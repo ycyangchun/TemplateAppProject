@@ -200,13 +200,15 @@ def build_versions = [:]
 build_versions.min_sdk = 19
 build_versions.target_sdk = 28
 build_versions.build_tools = "28.0.3"
+build_versions.versionName = "1.0.0"
+build_versions.versionCode = 1
 ext.build_versions = build_versions
 
 def app_release = [:]
-app_release.storeFile = "../keystores/android.keystore"
-app_release.storePassword = "xuexiang"
-app_release.keyAlias = "android.keystore"
-app_release.keyPassword = "xuexiang"
+app_release.storeFile = "D:/build3.0/zhcw.keystore"
+app_release.storePassword = "zhcwzhcw"
+app_release.keyAlias = "zhcw"
+app_release.keyPassword = "zhcwzhcw"
 
 ext.app_release = app_release
 

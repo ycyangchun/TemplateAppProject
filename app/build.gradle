@@ -4,17 +4,19 @@ apply plugin: 'img-optimizer'
 if (isNeedPackage.toBoolean() && isUseBooster.toBoolean()) {
     apply plugin: 'com.didiglobal.booster'
 }
-
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
 android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        applicationId "com.xuexiang.templateproject"
-        minSdkVersion 17
+        applicationId "com.zhcw.appZhcw"
+        minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
@@ -60,6 +62,11 @@ android {
                     buildConfigField "String", "APP_ID_UMENG", appID
                 } else {
                     buildConfigField "String", "APP_ID_UMENG", '""'
+                }
+                android.applicationVariants.all { variant ->
+                    variant.outputs.all {
+                        outputFileName = "zhcw_${releaseTime()}_${build_versions.versionName}.apk"
+                    }
                 }
             } else {
                 signingConfig signingConfigs.debug
@@ -115,11 +122,11 @@ dependencies {
 
 
     //美团多渠道打包
-    implementation 'com.meituan.android.walle:library:1.1.6'
+//    implementation 'com.meituan.android.walle:library:1.1.6'
 }
 //自动添加X-Library依赖
 apply from: 'x-library.gradle'
 //walle多渠道打包
-apply from: 'multiple-channel.gradle'
+//apply from: 'multiple-channel.gradle'
 
 
