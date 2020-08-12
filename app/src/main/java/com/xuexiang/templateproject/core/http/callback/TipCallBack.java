@@ -17,12 +17,12 @@
 
 package com.xuexiang.templateproject.core.http.callback;
 
-import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xhttp2.callback.SimpleCallBack;
 import com.xuexiang.xhttp2.exception.ApiException;
 import com.xuexiang.xhttp2.model.XHttpRequest;
 import com.xuexiang.xutil.common.StringUtils;
 import com.xuexiang.xutil.common.logger.Logger;
+import com.zhcw.lib.utils.XToastUtils;
 
 /**
  * 带错误toast提示的网络请求回调

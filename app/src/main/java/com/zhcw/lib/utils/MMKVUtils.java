@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.utils;
+package com.zhcw.lib.utils;
 
 
 import android.content.Context;

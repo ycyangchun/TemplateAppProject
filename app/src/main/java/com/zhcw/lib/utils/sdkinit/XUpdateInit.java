@@ -15,15 +15,15 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.sdkinit;
+package com.zhcw.lib.utils.sdkinit;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.xuexiang.templateproject.MyApp;
-import com.xuexiang.templateproject.utils.update.CustomUpdateDownloader;
-import com.xuexiang.templateproject.utils.update.CustomUpdateFailureListener;
-import com.xuexiang.templateproject.utils.update.XHttpUpdateHttpServiceImpl;
+import com.zhcw.app.MyApp;
+import com.zhcw.lib.utils.update.CustomUpdateDownloader;
+import com.zhcw.lib.utils.update.CustomUpdateFailureListener;
+import com.zhcw.lib.utils.update.XHttpUpdateHttpServiceImpl;
 import com.xuexiang.xupdate.XUpdate;
 import com.xuexiang.xupdate.utils.UpdateUtils;
 

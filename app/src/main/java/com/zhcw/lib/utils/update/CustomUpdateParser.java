@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.update;
+package com.zhcw.lib.utils.update;
 
 import com.xuexiang.xupdate.entity.UpdateEntity;
 import com.xuexiang.xupdate.proxy.impl.AbstractUpdateParser;

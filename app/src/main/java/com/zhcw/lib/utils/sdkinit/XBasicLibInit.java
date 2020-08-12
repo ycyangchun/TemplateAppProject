@@ -15,14 +15,14 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.sdkinit;
+package com.zhcw.lib.utils.sdkinit;
 
 import android.app.Application;
 
-import com.xuexiang.templateproject.MyApp;
+import com.zhcw.app.MyApp;
 import com.xuexiang.templateproject.core.BaseActivity;
-import com.xuexiang.templateproject.utils.MMKVUtils;
-import com.xuexiang.templateproject.utils.XToastUtils;
+import com.zhcw.lib.utils.MMKVUtils;
+import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xpage.AppPageConfig;

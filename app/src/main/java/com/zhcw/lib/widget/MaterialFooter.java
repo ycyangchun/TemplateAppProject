@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.widget;
+package com.zhcw.lib.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

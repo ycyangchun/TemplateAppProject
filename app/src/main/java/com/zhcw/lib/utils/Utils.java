@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.utils;
+package com.zhcw.lib.utils;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -32,13 +32,13 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
-import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.webview.AgentWebActivity;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
 import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xutil.XUtil;
+import com.zhcw.app.R;
 
 import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
 

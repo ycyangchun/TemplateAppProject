@@ -19,12 +19,12 @@ package com.xuexiang.templateproject.fragment;
 
 import android.widget.TextView;
 
-import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.core.webview.AgentWebActivity;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.widget.grouplist.XUIGroupListView;
 import com.xuexiang.xutil.app.AppUtils;
+import com.zhcw.app.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

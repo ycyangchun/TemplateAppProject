@@ -17,9 +17,9 @@
 
 package com.xuexiang.templateproject.fragment;
 
-import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
-import com.xuexiang.templateproject.utils.XToastUtils;
+import com.zhcw.app.R;
+import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;

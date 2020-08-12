@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.sdkinit;
+package com.zhcw.lib.utils.sdkinit;
 
 import android.app.Application;
 import android.content.Context;
@@ -23,8 +23,8 @@ import android.content.Context;
 //import com.meituan.android.walle.WalleChannelReader;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
-import com.xuexiang.templateproject.BuildConfig;
-import com.xuexiang.templateproject.MyApp;
+import com.zhcw.app.BuildConfig;
+import com.zhcw.app.MyApp;
 
 /**
  * UMeng 统计 SDK初始化

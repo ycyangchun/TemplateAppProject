@@ -20,7 +20,7 @@ package com.xuexiang.templateproject.core.http.subscriber;
 import androidx.annotation.NonNull;
 
 import com.xuexiang.templateproject.core.BaseFragment;
-import com.xuexiang.templateproject.utils.XToastUtils;
+import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xhttp2.exception.ApiException;
 import com.xuexiang.xhttp2.model.XHttpRequest;
 import com.xuexiang.xhttp2.subsciber.ProgressLoadingSubscriber;

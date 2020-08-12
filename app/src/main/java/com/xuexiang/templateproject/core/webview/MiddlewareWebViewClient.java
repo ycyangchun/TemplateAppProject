@@ -27,8 +27,8 @@ import android.webkit.WebView;
 import androidx.annotation.RequiresApi;
 
 import com.just.agentweb.core.client.MiddlewareWebClientBase;
-import com.xuexiang.templateproject.R;
 import com.xuexiang.xui.utils.ResUtils;
+import com.zhcw.app.R;
 
 import static com.xuexiang.templateproject.core.webview.WebViewInterceptDialog.APP_LINK_HOST;
 

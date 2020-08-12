@@ -65,9 +65,9 @@ import com.just.agentweb.download.DownloadListenerAdapter;
 import com.just.agentweb.download.DownloadingService;
 import com.just.agentweb.utils.LogUtils;
 import com.just.agentweb.widget.IWebLayout;
-import com.xuexiang.templateproject.MyApp;
-import com.xuexiang.templateproject.R;
-import com.xuexiang.templateproject.utils.XToastUtils;
+import com.zhcw.app.MyApp;
+import com.zhcw.app.R;
+import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xutil.net.JsonUtil;
 
 import java.util.HashMap;

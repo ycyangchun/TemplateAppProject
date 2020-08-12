@@ -15,17 +15,17 @@
  *
  */
 
-package com.xuexiang.templateproject.utils;
+package com.zhcw.lib.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import com.xuexiang.xaop.annotation.MemoryCache;
 import com.xuexiang.xui.adapter.simple.AdapterItem;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.widget.banner.widget.banner.BannerItem;
+import com.zhcw.app.R;
 
 import java.util.ArrayList;
 import java.util.List;

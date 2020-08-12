@@ -21,9 +21,9 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-import com.xuexiang.templateproject.R;
 import com.xuexiang.xui.adapter.listview.BaseListAdapter;
 import com.xuexiang.xutil.common.StringUtils;
+import com.zhcw.app.R;
 
 import java.util.List;
 import java.util.Map;

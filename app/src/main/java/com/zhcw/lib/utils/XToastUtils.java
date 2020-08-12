@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.utils;
+package com.zhcw.lib.utils;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;

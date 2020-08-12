@@ -33,7 +33,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
@@ -41,8 +40,6 @@ import com.xuexiang.templateproject.fragment.SettingsFragment;
 import com.xuexiang.templateproject.fragment.news.NewsFragment;
 import com.xuexiang.templateproject.fragment.profile.ProfileFragment;
 import com.xuexiang.templateproject.fragment.trending.TrendingFragment;
-import com.xuexiang.templateproject.utils.Utils;
-import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xui.adapter.FragmentAdapter;
 import com.xuexiang.xui.utils.ResUtils;
@@ -52,6 +49,9 @@ import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.common.ClickUtils;
 import com.xuexiang.xutil.common.CollectionUtils;
 import com.xuexiang.xutil.display.Colors;
+import com.zhcw.app.R;
+import com.zhcw.lib.utils.Utils;
+import com.zhcw.lib.utils.XToastUtils;
 
 import butterknife.BindView;
 

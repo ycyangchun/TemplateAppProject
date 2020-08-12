@@ -27,7 +27,7 @@ import androidx.annotation.Nullable;
 
 import com.just.agentweb.widget.IWebLayout;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.xuexiang.templateproject.R;
+import com.zhcw.app.R;
 
 /**
  * 定义支持下来回弹的WebView

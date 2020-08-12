@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.sdkinit;
+package com.zhcw.lib.utils.sdkinit;
 
 import com.github.anrwatchdog.ANRWatchDog;
 import com.xuexiang.xutil.common.logger.Logger;

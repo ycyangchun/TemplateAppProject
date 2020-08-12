@@ -27,12 +27,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.xuexiang.templateproject.R;
-import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xrouter.facade.Postcard;
 import com.xuexiang.xrouter.facade.callback.NavCallback;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.widget.slideback.SlideBack;
+import com.zhcw.app.R;
+import com.zhcw.lib.utils.XToastUtils;
 
 import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
 

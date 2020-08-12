@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.update;
+package com.zhcw.lib.utils.update;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

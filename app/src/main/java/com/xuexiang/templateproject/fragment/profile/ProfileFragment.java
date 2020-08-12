@@ -17,7 +17,6 @@
 
 package com.xuexiang.templateproject.fragment.profile;
 
-import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
 import com.xuexiang.templateproject.fragment.SettingsFragment;
@@ -27,6 +26,7 @@ import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
+import com.zhcw.app.R;
 
 import butterknife.BindView;
 

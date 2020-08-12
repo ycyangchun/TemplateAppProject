@@ -12,7 +12,7 @@ android {
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        applicationId "com.zhcw.appZhcw"
+        applicationId "com.zhcw.app"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode build_versions.versionCode
@@ -91,6 +91,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            java.srcDirs = ['src/main/java/', 'src/main/aidl']
+            res.srcDirs = [
+                    'src/main/res_app/',
+                    'src/main/res_lib/',
+                    'src/main/res',
+            ]
+
+        }
+    }
+
 }
 
 dependencies {

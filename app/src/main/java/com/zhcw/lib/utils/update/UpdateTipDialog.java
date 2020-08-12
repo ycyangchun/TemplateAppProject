@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.update;
+package com.zhcw.lib.utils.update;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,7 +25,7 @@ import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.xuexiang.templateproject.utils.Utils;
+import com.zhcw.lib.utils.Utils;
 import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xupdate.XUpdate;
 
@@ -37,7 +37,7 @@ import com.xuexiang.xupdate.XUpdate;
  */
 public class UpdateTipDialog extends AppCompatActivity implements DialogInterface.OnDismissListener {
 
-    public static final String KEY_CONTENT = "com.xuexiang.templateproject.utils.update.KEY_CONTENT";
+    public static final String KEY_CONTENT = "com.zhcw.lib.utils.update.KEY_CONTENT";
 
     /**
      * 显示版本更新重试提示弹窗

@@ -19,9 +19,9 @@ package com.xuexiang.templateproject.activity;
 
 import android.view.KeyEvent;
 
-import com.xuexiang.templateproject.R;
-import com.xuexiang.templateproject.utils.MMKVUtils;
-import com.xuexiang.templateproject.utils.Utils;
+import com.zhcw.app.R;
+import com.zhcw.lib.utils.MMKVUtils;
+import com.zhcw.lib.utils.Utils;
 import com.xuexiang.xui.utils.KeyboardUtils;
 import com.xuexiang.xui.widget.activity.BaseSplashActivity;
 import com.xuexiang.xutil.app.ActivityUtils;

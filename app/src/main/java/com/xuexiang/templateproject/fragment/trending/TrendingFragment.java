@@ -17,11 +17,11 @@
 
 package com.xuexiang.templateproject.fragment.trending;
 
-import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
+import com.zhcw.app.R;
 
 /**
  * @author xuexiang

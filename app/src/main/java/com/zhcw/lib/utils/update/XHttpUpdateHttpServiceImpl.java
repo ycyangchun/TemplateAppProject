@@ -15,11 +15,11 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.update;
+package com.zhcw.lib.utils.update;
 
 import androidx.annotation.NonNull;
 
-import com.xuexiang.templateproject.utils.XToastUtils;
+import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xhttp2.XHttp;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xhttp2.callback.DownloadProgressCallBack;

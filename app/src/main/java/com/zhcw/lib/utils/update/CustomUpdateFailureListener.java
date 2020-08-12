@@ -15,9 +15,9 @@
  *
  */
 
-package com.xuexiang.templateproject.utils.update;
+package com.zhcw.lib.utils.update;
 
-import com.xuexiang.templateproject.utils.XToastUtils;
+import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xupdate.entity.UpdateError;
 import com.xuexiang.xupdate.listener.OnUpdateFailureListener;
 
