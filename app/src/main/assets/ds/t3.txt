@@ -1,0 +1,39 @@
+﻿{
+	"message": {
+		"body": {
+			"dbkList": [{
+					"image": "http://m.zhcw.com/upload/resources/image/2017/10/10/642992.jpg",
+					"newMoney": "30.00",
+					"money": "40.00",
+					"dsctName": "智能点播",
+					"dsctId": "1",
+					"dsctTimes": "20"
+				},
+				{
+					"image": "http://m.zhcw.com/upload/resources/image/2017/10/10/642992.jpg",
+					"newMoney": "60.00",
+					"money": "100.00",
+					"dsctName": "智能点播",
+					"dsctId": "2",
+					"dsctTimes": "50"
+				},
+				{
+					"image": "http://m.zhcw.com/upload/resources/image/2017/10/10/642992.jpg",
+					"newMoney": "100.00",
+					"money": "200.00",
+					"dsctName": "智能点播",
+					"dsctId": "3",
+					"dsctTimes": "100"
+				}
+			]
+		},
+		"head": {
+			"message": "请求成功！",
+			"messageID": "99992017121815192456",
+			"messengerID": "9999",
+			"resCode": "0",
+			"timeStamp": "20171218164647",
+			"transactionType": "10130207"
+		}
+	}
+}

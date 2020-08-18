@@ -31,7 +31,7 @@ import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.zhcw.app.R;
 import com.zhcw.lib.utils.DemoDataProvider;
-import com.zhcw.lib.utils.Utils;
+import com.zhcw.lib.utils.SplashUtils;
 import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -143,7 +143,7 @@ public class NewsFragment extends BaseFragment {
                     holder.text(R.id.tv_read, "阅读量 " + model.getRead());
                     holder.image(R.id.iv_image, model.getImageUrl());
 
-                    holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
+                    holder.click(R.id.card_view, v -> SplashUtils.goWeb(getContext(), model.getDetailUrl()));
                 }
             }
         };

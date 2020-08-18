@@ -20,7 +20,7 @@ package com.zhcw.lib.utils.sdkinit;
 import android.app.Application;
 import android.content.Context;
 
-import com.zhcw.app.MyApp;
+import com.zhcw.lib.base.BaseApplication;
 import com.zhcw.lib.utils.update.CustomUpdateDownloader;
 import com.zhcw.lib.utils.update.CustomUpdateFailureListener;
 import com.zhcw.lib.utils.update.XHttpUpdateHttpServiceImpl;
@@ -46,7 +46,7 @@ public final class XUpdateInit {
 
     public static void init(Application application) {
         XUpdate.get()
-                .debug(MyApp.isDebug())
+                .debug(BaseApplication.isDebug())
                 //默认设置只在wifi下检查版本更新
                 .isWifiOnly(false)
                 //默认设置使用get请求检查版本

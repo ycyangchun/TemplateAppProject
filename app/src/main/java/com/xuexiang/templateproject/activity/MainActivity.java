@@ -33,7 +33,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.xuexiang.templateproject.core.BaseActivity;
+import com.zhcw.lib.base.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
 import com.xuexiang.templateproject.fragment.SettingsFragment;
@@ -50,7 +50,7 @@ import com.xuexiang.xutil.common.ClickUtils;
 import com.xuexiang.xutil.common.CollectionUtils;
 import com.xuexiang.xutil.display.Colors;
 import com.zhcw.app.R;
-import com.zhcw.lib.utils.Utils;
+import com.zhcw.lib.utils.SplashUtils;
 import com.zhcw.lib.utils.XToastUtils;
 
 import butterknife.BindView;
@@ -128,7 +128,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         TextView tvAvatar = headerView.findViewById(R.id.tv_avatar);
         TextView tvSign = headerView.findViewById(R.id.tv_sign);
 
-        if (Utils.isColorDark(ThemeUtils.resolveColor(this, R.attr.colorAccent))) {
+        if (SplashUtils.isColorDark(ThemeUtils.resolveColor(this, R.attr.colorAccent))) {
             tvAvatar.setTextColor(Colors.WHITE);
             tvSign.setTextColor(Colors.WHITE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -200,7 +200,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_privacy:
-                Utils.showPrivacyDialog(this, null);
+                SplashUtils.showPrivacyDialog(this, null);
                 break;
             default:
                 break;

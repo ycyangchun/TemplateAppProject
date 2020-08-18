@@ -1,0 +1,25 @@
+{
+    "message": {
+        "body": {
+            "busiCode": "10110201",
+            "hotspot": "",
+            "issue": "",
+            "lottery": "3D",
+            "message": "获取成功",
+            "number": "",
+            "resCode": "000000",
+        },
+        "head": {
+            "imei": "1",
+            "message": "操作成功",
+            "messageID": "99992017041910183750",
+            "messengerID": "9999",
+            "resCode": "000000",
+            "src": "0003000001|0401003430",
+            "sysType": "S",
+            "timeStamp": "20170419101837",
+            "transactionType": "10110301",
+            "ua": "H"
+        }
+    }
+}

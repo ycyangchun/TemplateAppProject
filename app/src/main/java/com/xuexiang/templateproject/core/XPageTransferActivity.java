@@ -19,6 +19,7 @@ package com.xuexiang.templateproject.core;
 
 import android.os.Bundle;
 
+import com.zhcw.lib.base.BaseActivity;
 import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xrouter.annotation.AutoWired;
 import com.xuexiang.xrouter.annotation.Router;

@@ -39,8 +39,10 @@ versions.kotlin = "1.2.20"
 versions.paging = "1.0.0-alpha5"
 versions.butterknife = "10.1.0"
 versions.runner = "1.2.0"
-versions.gson = "2.8.5"
-versions.okhttp3 = "3.13.1"
+// 2.2.4更新2.8.5 会报 com.google.gson.internal.LinkedTreeMap cannot be cast to
+versions.gson = "2.2.4"//
+//okhttp3对Android5.0以下版本不兼容问题 3.12.0
+versions.okhttp3 = "3.12.0"
 versions.nineoldandroids = "2.4.0"
 versions.calligraphy = "2.3.0"
 versions.godeye = "1.7.4"

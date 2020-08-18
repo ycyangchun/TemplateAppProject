@@ -1,0 +1,88 @@
+{
+    "obj": [
+        {
+            "data": [
+                {
+                    "bigTitle": "初级统计",
+                    "isHighGrade": false,
+                    "quota": "",
+                    "quotaCode": "",
+                    "samllTitle": "",
+                    "type": "三同号",
+                    "typeCode": "903"
+                }
+            ],
+            "isShowLine": false,
+            "type": 0
+        },
+        {
+            "data": [
+                {
+                    "bigTitle": "初级统计",
+                    "isHighGrade": false,
+                    "quota": "单选",
+                    "quotaCode": "01",
+                    "samllTitle": "",
+                    "type": "三同号",
+                    "typeCode": "903"
+                },
+                {
+                    "bigTitle": "初级统计",
+                    "isHighGrade": false,
+                    "quota": "二组",
+                    "quotaCode": "30",
+                    "samllTitle": "",
+                    "type": "三同号",
+                    "typeCode": "903"
+                },
+                {
+                    "bigTitle": "初级统计",
+                    "isHighGrade": false,
+                    "quota": "三组",
+                    "quotaCode": "31",
+                    "samllTitle": "",
+                    "type": "三同号",
+                    "typeCode": "903"
+                },
+                {
+                    "bigTitle": "初级统计",
+                    "isHighGrade": false,
+                    "quota": "四组",
+                    "quotaCode": "32",
+                    "samllTitle": "",
+                    "type": "三同号",
+                    "typeCode": "903"
+                },
+                {
+                    "bigTitle": "初级统计",
+                    "isHighGrade": false,
+                    "quota": "五组",
+                    "quotaCode": "33",
+                    "samllTitle": "",
+                    "type": "三同号",
+                    "typeCode": "903"
+                },
+                {
+                    "bigTitle": "初级统计",
+                    "isHighGrade": false,
+                    "quota": "通选",
+                    "quotaCode": "35",
+                    "samllTitle": "",
+                    "type": "三同号",
+                    "typeCode": "903"
+                },
+                {
+                    "bigTitle": "初级统计",
+                    "isHighGrade": false,
+                    "quota": "012路",
+                    "quotaCode": "14",
+                    "samllTitle": "",
+                    "type": "三同号",
+                    "typeCode": "903"
+                }
+            ],
+            "isShowLine": false,
+            "type": 4
+        }
+    ]
+}

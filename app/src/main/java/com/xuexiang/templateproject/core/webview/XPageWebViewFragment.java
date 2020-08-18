@@ -62,7 +62,7 @@ import com.just.agentweb.download.DefaultDownloadImpl;
 import com.just.agentweb.download.DownloadListenerAdapter;
 import com.just.agentweb.download.DownloadingService;
 import com.just.agentweb.widget.IWebLayout;
-import com.zhcw.app.MyApp;
+import com.zhcw.lib.base.BaseApplication;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.zhcw.app.R;
 import com.zhcw.lib.utils.XToastUtils;
@@ -184,7 +184,7 @@ public class XPageWebViewFragment extends BaseFragment {
                 //WebView载入该url地址的页面并显示。
                 .go(getUrl());
 
-        if (MyApp.isDebug()) {
+        if (BaseApplication.isDebug()) {
             AgentWebConfig.debug();
         }
 

@@ -97,14 +97,17 @@ android {
             jniLibs.srcDirs = ['libs']
             java.srcDirs = ['src/main/java/', 'src/main/aidl']
             res.srcDirs = [
-                    'src/main/res_app/',
                     'src/main/res_lib/',
                     'src/main/res',
             ]
 
         }
     }
-
+    configurations.all {
+        //2.2.4更新2.8.5 会报 com.google.gson.internal.LinkedTreeMap cannot be cast to
+        //强制依赖
+        resolutionStrategy.force deps.gson
+    }
 }
 
 dependencies {
