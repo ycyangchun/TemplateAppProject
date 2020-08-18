@@ -65,6 +65,7 @@ import com.just.agentweb.download.DownloadListenerAdapter;
 import com.just.agentweb.download.DownloadingService;
 import com.just.agentweb.utils.LogUtils;
 import com.just.agentweb.widget.IWebLayout;
+import com.zhcw.app.App;
 import com.zhcw.lib.base.BaseApplication;
 import com.zhcw.app.R;
 import com.zhcw.lib.utils.XToastUtils;
@@ -145,7 +146,7 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown {
                 //WebView载入该url地址的页面并显示。
                 .go(getUrl());
 
-        if (BaseApplication.isDebug()) {
+        if (App.isDebug()) {
             AgentWebConfig.debug();
         }
 

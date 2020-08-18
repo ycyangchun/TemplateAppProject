@@ -69,25 +69,13 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
     protected void onSplashFinished() {
         boolean isAgree = MMKVUtils.getBoolean("key_agree_privacy", false);
         if (isAgree) {
-            initFile();
-
-            ZhcwUtils zhcwUtils =  ZhcwUtils.getInstance();
-            zhcwUtils.writeCacheFile("txt/1.txt","111111112222");
-            zhcwUtils.writeAssetsCacheFile("ds/k3/t1.txt");
-            zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
-//            Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
-
-            Constants.toastBean = zhcwUtils.initToastList("toastlist.txt");
-            Logger.d(Constants.getMapValue(Constants.toastBean, "","11"));
-            Logger.d(Constants.getMapValue(Constants.toastBean, "DC101059","22"));
-
-            ActivityUtils.startActivity(MainActivity.class);
-            finish();
+            toMain();
         } else {
             showPrivacy();
         }
     }
 
+    //权限申请
     private void showPrivacy() {
         SplashUtils.showPrivacyDialog(this, (dialog, which) -> {
             dialog.dismiss();
@@ -105,16 +93,35 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
     private void handleRequestPermission(View v) {// 必须有参数
 //        XToastUtils.toast("权限申请通过！");
         MMKVUtils.put("key_agree_privacy", true);
-        initFile();
+        toMain();
+    }
+
+    // 主页
+    private void toMain() {
+        initFileStorage();
+        initCacheTxt();
 
         ActivityUtils.startActivity(MainActivity.class);
         finish();
     }
 
-    private void initFile() {
+    //初始存储目录
+    private void initFileStorage() {
 
         FileUtilSupply.initCache();
         CrashHandler.getInstance().init(this);
     }
 
+    //初始cache
+    private void initCacheTxt() {
+        ZhcwUtils zhcwUtils =  ZhcwUtils.getInstance();
+        zhcwUtils.writeCacheFile("txt/1.txt","111111112222");
+        zhcwUtils.writeAssetsCacheFile("ds/k3/t1.txt");
+        zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
+//            Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
+
+        Constants.toastBean = zhcwUtils.initToastList("toastlist.txt");
+        Logger.d(Constants.getMapValue(Constants.toastBean, "","11"));
+        Logger.d(Constants.getMapValue(Constants.toastBean, "DC101059","22"));
+    }
 }

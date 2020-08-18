@@ -23,6 +23,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.xuexiang.xutil.common.logger.Logger;
+import com.zhcw.app.App;
 import com.zhcw.app.BuildConfig;
 import com.zhcw.lib.utils.FileUtilSupply;
 import com.zhcw.lib.utils.sdkinit.ANRWatchDogInit;
@@ -68,7 +69,7 @@ public class BaseApplication extends Application {
         XUpdateInit.init(this);
 
         //运营统计数据运行时不初始化
-        if (!BaseApplication.isDebug()) {
+        if (!App.isDebug()) {
             UMengInit.init(this);
         }
 
@@ -77,12 +78,6 @@ public class BaseApplication extends Application {
     }
 
 
-    /**
-     * @return 当前app是否是调试开发模式
-     */
-    public static boolean isDebug() {
-        return BuildConfig.DEBUG;
-    }
 
     /**
      *

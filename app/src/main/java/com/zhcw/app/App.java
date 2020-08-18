@@ -22,9 +22,8 @@ public class App extends BaseApplication{
 
     @Override
     public void onCreate() {
-        super.onCreate();
-
         buildApp();
+        super.onCreate();
     }
 
     public void buildApp(){
@@ -49,7 +48,13 @@ public class App extends BaseApplication{
                 break;
         }
 
-        Logger.setDebug(Constants.isLog);// 日志输出
+    }
+
+    /**
+     * @return 当前app是否是调试开发模式
+     */
+    public static boolean isDebug() {
+        return Constants.isLog;
     }
 
 }

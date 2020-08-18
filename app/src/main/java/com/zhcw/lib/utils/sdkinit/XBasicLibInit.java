@@ -19,6 +19,7 @@ package com.zhcw.lib.utils.sdkinit;
 
 import android.app.Application;
 
+import com.zhcw.app.App;
 import com.zhcw.lib.base.BaseApplication;
 import com.zhcw.lib.base.BaseActivity;
 import com.zhcw.lib.utils.MMKVUtils;
@@ -70,7 +71,7 @@ public final class XBasicLibInit {
      * 初始化XUtil工具类
      */
     private static void initXUtil(Application application) {
-        XUtil.debug(BaseApplication.isDebug());
+        XUtil.debug(App.isDebug());
         MMKVUtils.init(application);
     }
 
@@ -81,7 +82,7 @@ public final class XBasicLibInit {
         //初始化网络请求框架，必须首先执行
         XHttpSDK.init(application);
         //需要调试的时候执行
-        if (BaseApplication.isDebug()) {
+        if (App.isDebug()) {
             XHttpSDK.debug();
         }
 //        XHttpSDK.debug(new CustomLoggingInterceptor()); //设置自定义的日志打印拦截器
@@ -103,8 +104,8 @@ public final class XBasicLibInit {
                     //自动注册页面,是编译时自动生成的，build一下就出来了
                     return PageConfig.getInstance().getPages();
                 })
-                .debug(BaseApplication.isDebug() ? "PageLog" : null)
-                .enableWatcher(BaseApplication.isDebug())
+                .debug(App.isDebug() ? "PageLog" : null)
+                .enableWatcher(App.isDebug())
                 .setContainActivityClazz(BaseActivity.class)
                 .init(application);
     }
@@ -114,7 +115,7 @@ public final class XBasicLibInit {
      */
     private static void initXAOP(Application application) {
         XAOP.init(application);
-        XAOP.debug(BaseApplication.isDebug());
+        XAOP.debug(App.isDebug());
 
     }
 
@@ -123,7 +124,7 @@ public final class XBasicLibInit {
      */
     private static void initXUI(Application application) {
         XUI.init(application);
-        XUI.debug(BaseApplication.isDebug());
+        XUI.debug(App.isDebug());
     }
 
     /**
@@ -131,7 +132,7 @@ public final class XBasicLibInit {
      */
     private static void initRouter(Application application) {
         // 这两行必须写在init之前，否则这些配置在init过程中将无效
-        if (BaseApplication.isDebug()) {
+        if (App.isDebug()) {
             XRouter.openLog();     // 打印日志
             XRouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }

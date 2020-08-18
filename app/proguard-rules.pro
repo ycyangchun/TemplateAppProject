@@ -1,3 +1,39 @@
+
+#--------------------------1.实体类---------------------------------
+# 如果使用了Gson之类的工具要使被它解析的JavaBean类即实体类不被混淆。（这里填写自己项目中存放bean对象的具体路径）
+-keep class com.zhcw.lib.base.bean.** { *; }
+
+#--------------------------2.第三方包-------------------------------
+#####混淆保护自己项目的部分代码以及引用的第三方jar包library#######
+#如果在当前的application module或者依赖的library module中使用了第三方的库，并不需要显式添加规则
+#-libraryjars xxx
+#添加了反而有可能在打包的时候遭遇同一个jar多次被指定的错误，一般只需要添加忽略警告和保持某些class不被混淆的声明。
+#以libaray的形式引用了开源项目,如果不想混淆 keep 掉，在引入的module的build.gradle中设置minifyEnabled=false
+
+
+
+
+#-------------------------3.与js互相调用的类------------------------
+#保留annotation， 例如 @JavascriptInterface 等 annotation
+#-keepattributes *Annotation*
+
+#保留跟 javascript相关的属性
+-keepattributes JavascriptInterface
+
+#保留JavascriptInterface中的方法
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+#这个根据自己的project来设置，这个类用来与js交互，所以这个类中的 字段 ，方法， 等尽量保持
+
+#https://www.cnblogs.com/MrShi/archive/2013/04/12/3016282.html
+
+#-------------------------4.反射相关的类和方法----------------------
+
+
+
+#-------------------------5.基本不用动区域--------------------------
 #=========================================基础不变的混淆配置=========================================##
 #指定代码的压缩级别
 -optimizationpasses 5
