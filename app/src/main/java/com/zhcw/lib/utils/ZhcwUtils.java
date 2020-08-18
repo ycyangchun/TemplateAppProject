@@ -78,7 +78,7 @@ public class ZhcwUtils {
      **/
 
     /**
-     * 文本写入cache
+     * 文本第一次写入cache
      *
      * @param filePath
      * @param content
@@ -88,7 +88,7 @@ public class ZhcwUtils {
     }
 
     /**
-     * 文本写入cache
+     * 文本再次写入cache
      *
      * @param filePath
      * @param content
@@ -100,7 +100,7 @@ public class ZhcwUtils {
             File file = new File(cacheFilePath);
             if (file.exists() && !overwrite) {
                 long size = FileUtilSupply.getFileSize(file);
-                if (size > 0 && size == content.length()) {
+                if (size > 0) {
                     Logger.d(filePath + " -->已存在 " + size);
                     return;
                 }
@@ -113,7 +113,7 @@ public class ZhcwUtils {
     }
 
     /**
-     * assets 写入cache
+     * assets 第一次写入cache
      *
      * @param assetsPath
      */
@@ -122,10 +122,10 @@ public class ZhcwUtils {
     }
 
     /**
-     * assets 写入cache
+     * assets 再次写入cache
      *
      * @param assetsPath
-     * @param overwrite  是否重复写入
+     * @param overwrite  是否重复写入 true
      */
     public void writeAssetsCacheFile(String assetsPath, boolean overwrite) {
         try {
@@ -134,7 +134,7 @@ public class ZhcwUtils {
             String content = ResourceUtils.readStringFromAssert(assetsPath);
             if (file.exists() && !overwrite) {
                 long size = FileUtilSupply.getFileSize(file);
-                if (size > 0 && size == content.length()) {
+                if (size > 0) {
                     Logger.d(assetsPath + " -->assets已存在 " + size);
                     return;
                 }
