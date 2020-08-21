@@ -41,6 +41,7 @@ import com.zhcw.lib.utils.ZhcwUtils;
 import com.zhcw.lib.utils.sdkinit.CrashHandler;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import me.jessyan.autosize.internal.CancelAdapt;
 
@@ -50,7 +51,7 @@ import me.jessyan.autosize.internal.CancelAdapt;
  * @author xuexiang
  * @since 2019-06-30 17:32
  */
-public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
+public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
 
     @Override
     protected long getSplashDurationMillis() {
@@ -90,12 +91,12 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
         //设置动态申请权限切片 申请权限被拒绝的事件响应监听
         XAOP.setOnPermissionDeniedListener(permissionsDenied ->
 //                XToastUtils.error("权限申请被拒绝:" + StringUtils.listToString(permissionsDenied, ","))
-                showPrivacy()
+                        showPrivacy()
         );
     }
 
     @SingleClick
-    @Permission({PermissionConsts.STORAGE,PermissionConsts.PHONE, PermissionConsts.LOCATION})
+    @Permission({PermissionConsts.STORAGE, PermissionConsts.PHONE, PermissionConsts.LOCATION})
     private void handleRequestPermission(View v) {// 必须有参数
 //        XToastUtils.toast("权限申请通过！");
         MMKVUtils.put("key_agree_privacy", true);
@@ -114,28 +115,49 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
     private void initFileStorage() {
         FileUtilSupply.initCache();
         CrashHandler.getInstance().init(this);
-        initCacheTxt();
-        dbData();
+        AppExecutors.get().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                initCacheTxt();
+            }
+        });
+
+        AppExecutors.get().poolIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                dbData();
+            }
+        });
+
+
     }
 
     //测试数据库
     private void dbData() {
-        DbUser dbUser = new DbUser();
-        dbUser.setUserName("yc_"+(Math.random() * 100));
-        dbUser.setMobile("188"+(Math.random() * 100));
-        dbUser.setType(1);
 
+        DbUser dbUser;
         DBService<DbUser> internal = InternalDataBaseRepository.getInstance().getDataBase(DbUser.class);
 
         try {
-            internal.insert(dbUser);
+//            internal.deleteAll();
+            List<DbUser> list = internal.queryAndOrderBy("username","yc","id",false);
+            if(null == list || list.size() < 1){
+                dbUser = new DbUser();
+                dbUser.setUserName("yc");
+                dbUser.setMobile("188" + (Math.random() * 100));
+                dbUser.setType(1);
+                internal.insert(dbUser);
+            }else{
+                Logger.d(internal.queryAll().toString());
+                dbUser = list.get(0);
+                dbUser.setMobile((Math.random() * 100)+"222");
+
+                internal.updateData(dbUser);
+
+            }
 
             Logger.d(internal.queryAll().toString());
 
-            dbUser.setMobile("111"+(Math.random() * 100));
-            internal.updateData(dbUser);
-
-            Logger.d(internal.queryAll().toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -145,20 +167,17 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
 
     //初始cache
     private void initCacheTxt() {
-        AppExecutors.get().diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                ZhcwUtils zhcwUtils =  ZhcwUtils.getInstance();
-                zhcwUtils.writeCacheFile("txt/1.txt","111111112222");
-                zhcwUtils.writeAssetsCacheFile("ds/k3/t1.txt");
-                zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
-//              Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
 
-                Logger.d(ToastList.getInstance().getMapValue("DC101062","默认key 11111111111111111"));
-//              ToastList.getInstance().updateToast();
-                Logger.d(ToastList.getInstance().getMapValue("DC101059","默认key 22"));
-            }
-        });
+        ZhcwUtils zhcwUtils = ZhcwUtils.getInstance();
+        zhcwUtils.writeCacheFile("txt/1.txt", "111111112222");
+        zhcwUtils.writeAssetsCacheFile("ds/k3/t1.txt");
+        zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
+//      Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
+
+        Logger.d(ToastList.getInstance().getMapValue("DC101062", "默认key 11111111111111111"));
+//      ToastList.getInstance().updateToast();
+        Logger.d(ToastList.getInstance().getMapValue("DC101059", "默认key 22"));
+
 
     }
 }
