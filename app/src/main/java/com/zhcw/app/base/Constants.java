@@ -1,8 +1,5 @@
 package com.zhcw.app.base;
 
-import com.xuexiang.xaop.annotation.DiskCache;
-import com.zhcw.lib.utils.ZhcwUtils;
-
 import java.util.HashMap;
 
 public class Constants {
@@ -80,7 +77,7 @@ public class Constants {
      */
     public static String getMapValue(String mapK ,String defaultV){
         if(null == toastBean){
-            toastBean = ToastList.getToastMap();
+            toastBean = ToastList.getInstance().getToastMap();
         }
         return getMapValue(toastBean,mapK,defaultV);
     }

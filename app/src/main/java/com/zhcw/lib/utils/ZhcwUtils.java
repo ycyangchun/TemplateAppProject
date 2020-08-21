@@ -25,14 +25,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 
-import com.google.gson.reflect.TypeToken;
 import com.xuexiang.xutil.common.logger.Logger;
 import com.xuexiang.xutil.file.FileIOUtils;
 import com.xuexiang.xutil.resource.ResourceUtils;
 import com.xuexiang.xutil.tip.ToastUtils;
 import com.zhcw.app.App;
-import com.zhcw.lib.base.bean.BaseBean;
-import com.zhcw.lib.base.bean.ToastBean;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -41,7 +38,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.SoftReference;
-import java.util.HashMap;
 
 
 public class ZhcwUtils {
@@ -176,26 +172,6 @@ public class ZhcwUtils {
             return content;
         }
 
-    }
-
-    /**  示例 toastlist
-     ZhcwUtils zhcwUtils =  ZhcwUtils.getInstance();
-     Constants.toastBean = zhcwUtils.initToastList("toastlist.txt");
-     Logger.d(Constants.getMapValue(Constants.toastBean, "","11"));
-     Logger.d(Constants.getMapValue(Constants.toastBean, "DC101059","22"));
-     **/
-
-    /**
-     * toastList  map
-     *
-     * @param toastPath
-     * @return
-     */
-    public HashMap<String, String> initToastList(String toastPath) {
-        String toastStr = readCacheFile(toastPath);
-        ToastBean toastBean = JsonUtils.unifiedBeanToBody(toastStr,
-                new TypeToken<BaseBean<ToastBean>>() {}.getType());
-        return toastBean.listToMap();
     }
 
 

@@ -50,8 +50,10 @@ public class JsonUtils {
      * @return
      */
     public static <T> T unifiedBeanToBody(String gsonString, Type type) {
-        BaseBean<T> rootBean = create().fromJson(gsonString, type);
-        return rootBean.getMessage().getBody();//
+        if(null != gsonString) {
+            BaseBean<T> rootBean = create().fromJson(gsonString, type);
+            return rootBean.getMessage().getBody();//
+        }else return null;
     }
 
 

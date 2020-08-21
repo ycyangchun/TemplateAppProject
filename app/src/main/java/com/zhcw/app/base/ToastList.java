@@ -17,15 +17,34 @@
 
 package com.zhcw.app.base;
 
+import com.google.gson.reflect.TypeToken;
 import com.xuexiang.xaop.annotation.DiskCache;
 import com.xuexiang.xaop.cache.XDiskCache;
+import com.zhcw.lib.base.bean.BaseBean;
+import com.zhcw.lib.base.bean.ToastBean;
+import com.zhcw.lib.utils.JsonUtils;
 import com.zhcw.lib.utils.ZhcwUtils;
 
 import java.util.HashMap;
 
 public class ToastList {
 
-    public static String toastName = "toastlist.txt";
+    /**
+     * 实例
+     *  Logger.d(Constants.getMapValue("DC101062","默认key 11111111111111111"));
+     *  ToastList.getInstance().updateToast();// 更新 ToastList
+     *  Logger.d(Constants.getMapValue("DC101059","默认key 22"));
+     */
+    private final String toastName = "toastlist.txt";
+
+    private static class Instance {
+        private static final ToastList INSTANCE = new ToastList();
+    }
+
+    public static ToastList getInstance() {
+        return ToastList.Instance.INSTANCE;
+    }
+
     /**
      * 读取 toastList
      * zhcwUtils 保存，便于查看用
@@ -33,15 +52,15 @@ public class ToastList {
      * @return
      */
     @DiskCache("toastMap")
-    public static HashMap<String ,String> getToastMap(){
-        return ZhcwUtils.getInstance().initToastList(toastName);
+    public HashMap<String ,String> getToastMap(){
+        return initToastList(toastName);
     }
 
     /**
      * 更新 toastList
      * 清除 DiskCache ，再次 getToastMap 就是最新数据
      */
-    public static void updateToast(){
+    public void updateToast(){
         Constants.toastBean = null;
         XDiskCache.getInstance().remove("toastMap");
     }
@@ -51,10 +70,24 @@ public class ToastList {
      * 清除 DiskCache ，再次 getToastMap 就是最新数据
      * @param toastList
      */
-    public static void updateToast(String toastList){
+    public void updateToast(String toastList){
         if(null != toastList){
             ZhcwUtils.getInstance().readCacheFile(toastName);
         }
         updateToast();
+    }
+
+    /**
+     * toastList  map
+     *
+     * @param toastPath
+     * @return
+     */
+    public HashMap<String, String> initToastList(String toastPath) {
+        //从ZhcwUtils读取
+        String toastStr = ZhcwUtils.getInstance().readCacheFile(toastPath);
+        ToastBean toastBean = JsonUtils.unifiedBeanToBody(toastStr,
+                new TypeToken<BaseBean<ToastBean>>() {}.getType());
+        return toastBean.listToMap();
     }
 }

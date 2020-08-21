@@ -20,7 +20,7 @@ public class ToastBean extends BaseMessage {
     // 自行添加的转换  list to map
     public HashMap<String,String> listToMap(){
         HashMap<String ,String> tipsMap = new HashMap<>();
-        if(tipsList != null && tipsList.size() > 0){
+        if(null != tipsList && tipsList.size() > 0){
             for (TipsListBean t : tipsList) {
                 tipsMap.put(t.tipsKey, t.tipsVal);
             }
