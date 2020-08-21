@@ -27,6 +27,7 @@ import com.xuexiang.xaop.consts.PermissionConsts;
 import com.xuexiang.xutil.common.logger.Logger;
 import com.zhcw.app.R;
 import com.zhcw.app.base.Constants;
+import com.zhcw.app.base.ToastList;
 import com.zhcw.lib.utils.FileUtilSupply;
 import com.zhcw.lib.utils.MMKVUtils;
 import com.zhcw.lib.utils.SplashUtils;
@@ -120,8 +121,9 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
         zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
 //            Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
 
-        Constants.toastBean = zhcwUtils.initToastList("toastlist.txt");
-        Logger.d(Constants.getMapValue(Constants.toastBean, "","11"));
-        Logger.d(Constants.getMapValue(Constants.toastBean, "DC101059","22"));
+//        Constants.toastBean = zhcwUtils.initToastList("toastlist.txt");
+        Logger.d(Constants.getMapValue("DC101062","默认key 11111111111111111"));
+        ToastList.updateToast();
+        Logger.d(Constants.getMapValue("DC101059","默认key 22"));
     }
 }

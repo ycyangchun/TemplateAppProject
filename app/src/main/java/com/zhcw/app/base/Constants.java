@@ -1,5 +1,8 @@
 package com.zhcw.app.base;
 
+import com.xuexiang.xaop.annotation.DiskCache;
+import com.zhcw.lib.utils.ZhcwUtils;
+
 import java.util.HashMap;
 
 public class Constants {
@@ -68,6 +71,20 @@ public class Constants {
 
     public static HashMap<String,String> toastBean;// toast
 
+
+    /**
+     *  获取 key --> value
+     * @param mapK
+     * @param defaultV
+     * @return
+     */
+    public static String getMapValue(String mapK ,String defaultV){
+        if(null == toastBean){
+            toastBean = ToastList.getToastMap();
+        }
+        return getMapValue(toastBean,mapK,defaultV);
+    }
+
     /**
      *  获取 key --> value
      * @param map
@@ -76,9 +93,12 @@ public class Constants {
      * @return
      */
     public static String getMapValue(HashMap<String,String> map,String mapK ,String defaultV){
-        String v = defaultV;
-        if(map != null){
+        String v = null;
+        if(null != map){
             v = map.get(mapK);
+        }
+        if(null == v){
+            v = defaultV;
         }
         return v;
     }
