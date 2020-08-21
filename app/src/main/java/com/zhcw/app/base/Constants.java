@@ -1,7 +1,5 @@
 package com.zhcw.app.base;
 
-import java.util.HashMap;
-
 public class Constants {
 
     public static boolean isDes; //是否加密
@@ -65,38 +63,4 @@ public class Constants {
         }
     }
 
-
-    public static HashMap<String,String> toastBean;// toast
-
-
-    /**
-     *  获取 key --> value
-     * @param mapK
-     * @param defaultV
-     * @return
-     */
-    public static String getMapValue(String mapK ,String defaultV){
-        if(null == toastBean){
-            toastBean = ToastList.getInstance().getToastMap();
-        }
-        return getMapValue(toastBean,mapK,defaultV);
-    }
-
-    /**
-     *  获取 key --> value
-     * @param map
-     * @param mapK
-     * @param defaultV
-     * @return
-     */
-    public static String getMapValue(HashMap<String,String> map,String mapK ,String defaultV){
-        String v = null;
-        if(null != map){
-            v = map.get(mapK);
-        }
-        if(null == v){
-            v = defaultV;
-        }
-        return v;
-    }
 }
