@@ -18,8 +18,8 @@
 package com.zhcw.app.base;
 
 import com.google.gson.reflect.TypeToken;
-import com.xuexiang.xaop.annotation.DiskCache;
-import com.xuexiang.xaop.cache.XDiskCache;
+import com.xuexiang.xaop.annotation.MemoryCache;
+import com.xuexiang.xaop.cache.XMemoryCache;
 import com.zhcw.lib.base.bean.BaseBean;
 import com.zhcw.lib.base.bean.ToastBean;
 import com.zhcw.lib.utils.JsonUtils;
@@ -48,26 +48,26 @@ public class ToastList {
     /**
      * 读取 toastList
      * zhcwUtils 保存，便于查看用
-     * DiskCache 应用中使用
+     * MemoryCache 应用中使用
      * @return
      */
-    @DiskCache("toastMap")
+    @MemoryCache("toastMap")
     public HashMap<String ,String> getToastMap(){
         return initToastList(toastName);
     }
 
     /**
      * 更新 toastList
-     * 清除 DiskCache ，再次 getToastMap 就是最新数据
+     * 清除 MemoryCache ，再次 getToastMap 就是最新数据
      */
     public void updateToast(){
         Constants.toastBean = null;
-        XDiskCache.getInstance().remove("toastMap");
+        XMemoryCache.getInstance().remove("toastMap");
     }
 
     /**
      * 更新 toastList
-     * 清除 DiskCache ，再次 getToastMap 就是最新数据
+     * 清除 MemoryCache ，再次 getToastMap 就是最新数据
      * @param toastList
      */
     public void updateToast(String toastList){
