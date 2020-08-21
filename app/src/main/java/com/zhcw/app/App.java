@@ -1,11 +1,18 @@
 package com.zhcw.app;
 
+import com.xuexiang.xormlite.ExternalDataBaseRepository;
+import com.xuexiang.xormlite.InternalDataBaseRepository;
+import com.xuexiang.xormlite.annotation.DataBase;
+import com.xuexiang.xormlite.enums.DataBaseType;
+import com.xuexiang.xormlite.logs.DBLog;
 import com.xuexiang.xutil.app.AppUtils;
 import com.xuexiang.xutil.common.logger.Logger;
 import com.xuexiang.xutil.data.DateUtils;
 import com.zhcw.app.base.Constants;
 import com.zhcw.app.base.IConstants;
 import com.zhcw.lib.base.BaseApplication;
+import com.zhcw.lib.db.ExternalDataBase;
+import com.zhcw.lib.db.InternalDataBase;
 import com.zhcw.lib.utils.FileUtilSupply;
 import com.zhcw.lib.utils.manager.UserMgr;
 
@@ -14,6 +21,7 @@ import java.util.Date;
 /**
  *  app Application
  */
+@DataBase(name = "internal", type = DataBaseType.INTERNAL)
 public class App extends BaseApplication{
 
     public static UserMgr userMgr;// 用户信息
@@ -24,6 +32,22 @@ public class App extends BaseApplication{
     public void onCreate() {
         buildApp();
         super.onCreate();
+        initDb();
+    }
+
+    private void initDb() {
+        InternalDataBaseRepository.getInstance()
+                .setIDatabase(new InternalDataBase())  //设置内部存储的数据库实现接口
+                .init(this);
+
+        ExternalDataBaseRepository.getInstance()
+                .setIDatabase(new ExternalDataBase(  //设置外部存储的数据库实现接口
+                        ExternalDataBaseRepository.DATABASE_PATH,
+                        ExternalDataBaseRepository.DATABASE_NAME,
+                        ExternalDataBaseRepository.DATABASE_VERSION))
+                .init(this);
+
+        DBLog.debug(isDebug());
     }
 
     public void buildApp(){

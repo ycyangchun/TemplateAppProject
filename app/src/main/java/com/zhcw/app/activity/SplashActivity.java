@@ -24,18 +24,23 @@ import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xaop.annotation.Permission;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xaop.consts.PermissionConsts;
+import com.xuexiang.xormlite.ExternalDataBaseRepository;
+import com.xuexiang.xormlite.InternalDataBaseRepository;
+import com.xuexiang.xormlite.db.DBService;
+import com.xuexiang.xui.widget.activity.BaseSplashActivity;
+import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.xutil.common.logger.Logger;
+import com.xuexiang.xutil.system.AppExecutors;
 import com.zhcw.app.R;
-import com.zhcw.app.base.Constants;
 import com.zhcw.app.base.ToastList;
+import com.zhcw.lib.db.entity.DbUser;
 import com.zhcw.lib.utils.FileUtilSupply;
 import com.zhcw.lib.utils.MMKVUtils;
 import com.zhcw.lib.utils.SplashUtils;
-import com.xuexiang.xui.widget.activity.BaseSplashActivity;
-import com.xuexiang.xutil.app.ActivityUtils;
-import com.zhcw.lib.utils.XToastUtils;
 import com.zhcw.lib.utils.ZhcwUtils;
 import com.zhcw.lib.utils.sdkinit.CrashHandler;
+
+import java.sql.SQLException;
 
 import me.jessyan.autosize.internal.CancelAdapt;
 
@@ -100,7 +105,6 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
     // 主页
     private void toMain() {
         initFileStorage();
-        initCacheTxt();
 
         ActivityUtils.startActivity(MainActivity.class);
         finish();
@@ -108,21 +112,58 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
 
     //初始存储目录
     private void initFileStorage() {
-
         FileUtilSupply.initCache();
         CrashHandler.getInstance().init(this);
+        initCacheTxt();
+        dbData();
+    }
+
+    //测试数据库
+    private void dbData() {
+        DbUser dbUser = new DbUser();
+        dbUser.setUserName("yc_"+(Math.random() * 100));
+        dbUser.setMobile("188"+(Math.random() * 100));
+        dbUser.setType(1);
+
+        DBService<DbUser> external = ExternalDataBaseRepository.getInstance().getDataBase(DbUser.class);
+        DBService<DbUser> internal = InternalDataBaseRepository.getInstance().getDataBase(DbUser.class);
+
+        try {
+            external.insert(dbUser);
+            internal.insert(dbUser);
+
+            Logger.d(external.queryAll().toString());
+            Logger.d(internal.queryAll().toString());
+
+            dbUser.setMobile("111"+(Math.random() * 100));
+            external.updateData(dbUser);
+            internal.updateData(dbUser);
+
+            Logger.d(external.queryAll().toString());
+            Logger.d(internal.queryAll().toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     //初始cache
     private void initCacheTxt() {
-        ZhcwUtils zhcwUtils =  ZhcwUtils.getInstance();
-        zhcwUtils.writeCacheFile("txt/1.txt","111111112222");
-        zhcwUtils.writeAssetsCacheFile("ds/k3/t1.txt");
-        zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
-//            Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
+        AppExecutors.get().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                ZhcwUtils zhcwUtils =  ZhcwUtils.getInstance();
+                zhcwUtils.writeCacheFile("txt/1.txt","111111112222");
+                zhcwUtils.writeAssetsCacheFile("ds/k3/t1.txt");
+                zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
+//              Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
 
-        Logger.d(ToastList.getInstance().getMapValue("DC101062","默认key 11111111111111111"));
-        ToastList.getInstance().updateToast();
-        Logger.d(ToastList.getInstance().getMapValue("DC101059","默认key 22"));
+                Logger.d(ToastList.getInstance().getMapValue("DC101062","默认key 11111111111111111"));
+//              ToastList.getInstance().updateToast();
+                Logger.d(ToastList.getInstance().getMapValue("DC101059","默认key 22"));
+            }
+        });
+
     }
 }
