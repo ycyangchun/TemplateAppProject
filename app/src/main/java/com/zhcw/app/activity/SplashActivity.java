@@ -125,21 +125,16 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt{
         dbUser.setMobile("188"+(Math.random() * 100));
         dbUser.setType(1);
 
-        DBService<DbUser> external = ExternalDataBaseRepository.getInstance().getDataBase(DbUser.class);
         DBService<DbUser> internal = InternalDataBaseRepository.getInstance().getDataBase(DbUser.class);
 
         try {
-            external.insert(dbUser);
             internal.insert(dbUser);
 
-            Logger.d(external.queryAll().toString());
             Logger.d(internal.queryAll().toString());
 
             dbUser.setMobile("111"+(Math.random() * 100));
-            external.updateData(dbUser);
             internal.updateData(dbUser);
 
-            Logger.d(external.queryAll().toString());
             Logger.d(internal.queryAll().toString());
         } catch (SQLException e) {
             e.printStackTrace();
