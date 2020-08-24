@@ -32,11 +32,12 @@ public class ToastList {
     /**
      * 实例
      *  Logger.d(ToastList.getInstance().getMapValue("DC101062","默认key 11111111111111111"));
-     *  ToastList.getInstance().updateToast();// 更新 ToastList
+     *  ToastList.getInstance().removeToast();// 更新 ToastList
      *  Logger.d(ToastList.getInstance().getMapValue("DC101059","默认key 22"));
      */
     private final String toastName = "toastlist.txt";
     private static HashMap<String,String> toastBean;// toast
+    private static String timeId = "-1";
 
     private static class Instance {
         private static final ToastList INSTANCE = new ToastList();
@@ -44,6 +45,10 @@ public class ToastList {
 
     public static ToastList getInstance() {
         return ToastList.Instance.INSTANCE;
+    }
+
+    public static String getTimeId() {
+        return timeId;
     }
 
     /**
@@ -61,22 +66,11 @@ public class ToastList {
      * 更新 toastList
      * 清除 DiskCache ，再次 getToastMap 就是最新数据
      */
-    public void updateToast(){
+    public void removeToast(){
         toastBean = null;
         XDiskCache.getInstance().remove("toastMap");
     }
 
-    /**
-     * 更新 toastList
-     * 清除 DiskCache ，再次 getToastMap 就是最新数据
-     * @param toastList
-     */
-    public void updateToast(String toastList){
-        if(null != toastList){
-            ZhcwUtils.getInstance().readCacheFile(toastName);
-        }
-        updateToast();
-    }
 
     /**
      * toastList  map
@@ -89,6 +83,7 @@ public class ToastList {
         String toastStr = ZhcwUtils.getInstance().readCacheFile(toastPath);
         ToastBean toastBean = JsonUtils.unifiedBeanToBody(toastStr,
                 new TypeToken<BaseBean<ToastBean>>() {}.getType());
+        timeId = toastBean.getTimeId();
         return toastBean.listToMap();
     }
 

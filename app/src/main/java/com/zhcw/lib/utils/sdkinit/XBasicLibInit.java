@@ -20,6 +20,7 @@ package com.zhcw.lib.utils.sdkinit;
 import android.app.Application;
 
 import com.zhcw.app.App;
+import com.zhcw.app.base.Constants;
 import com.zhcw.lib.base.BaseApplication;
 import com.zhcw.lib.base.BaseActivity;
 import com.zhcw.lib.utils.MMKVUtils;
@@ -87,10 +88,10 @@ public final class XBasicLibInit {
         }
 //        XHttpSDK.debug(new CustomLoggingInterceptor()); //设置自定义的日志打印拦截器
         //设置网络请求的全局基础地址
-        XHttpSDK.setBaseUrl("http://127.0.0.1:8080");
-//        //设置动态参数添加拦截器
+        XHttpSDK.setBaseUrl(Constants.HOST_URL_Z);
+        //设置动态参数添加拦截器
 //        XHttpSDK.addInterceptor(new CustomDynamicInterceptor());
-//        //请求失效校验拦截器
+        //请求失效校验拦截器
 //        XHttpSDK.addInterceptor(new CustomExpiredInterceptor());
     }
 
