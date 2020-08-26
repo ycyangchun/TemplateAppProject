@@ -19,6 +19,7 @@ public interface IConstants {
     String SYS_TYPE_DA = "DA";// 数据分析
 
     //////// web //////////
+    int WEB_NO_PING = -2;// -2 不ping ip;
     int WEB_NO_PARAM = -1;// -1 不添加param;
     int WEB_ZHCW_PARAM = 0;// 0 中彩网;
     int WEB_XMS_PARAM = 1;// 1 小秘书
@@ -27,15 +28,7 @@ public interface IConstants {
     ////////网络请求错误显示处理////////
     int ERR_SHOW_TOAST = 0;// 显示 toast
     int ERR_SHOW_DIALOG = 1;// 显示 dialog
-    int ERR_NO_SHOW = 2;// 父类不显示（可以子类单独处理）
+    int ERR_NO_SHOW = 2;// 不显示（可以子类单独处理）
 
-    /**
-     * 加载界面的三种状态
-     */
-    String STATE_LOADING = "loading";
-    String STATE_SUCCESSED = "success";
-    String STATE_FAILED = "failed";
 
-    //数据库的名字
-    String DB_NAME = "lottery_manager_system.sqlite";
 }

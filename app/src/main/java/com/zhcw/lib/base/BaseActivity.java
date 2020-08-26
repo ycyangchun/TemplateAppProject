@@ -25,9 +25,9 @@ import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.CoreSwitchBean;
 import com.xuexiang.xrouter.facade.service.SerializationService;
 import com.xuexiang.xrouter.launcher.XRouter;
+import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.widget.slideback.SlideBack;
 import com.xuexiang.xutil.XUtil;
-import com.xuexiang.xutil.tip.ToastUtils;
 import com.zhcw.lib.utils.manager.ActivityStackManager;
 import com.zhcw.lib.utils.sdkinit.CrashHandler;
 
@@ -60,7 +60,8 @@ public class BaseActivity extends XPageActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        XUI.initTheme(this);
+        initAppTheme();
+        initStatusBarStyle();
         super.onCreate(savedInstanceState);
         mUnbinder = ButterKnife.bind(this);
         Tag = this.getLocalClassName();
@@ -90,12 +91,28 @@ public class BaseActivity extends XPageActivity {
     }
 
     /**
+     * 初始化应用的主题
+     */
+    protected void initAppTheme() {
+        XUI.initTheme(this);
+    }
+
+    /**
+     * 初始化状态栏的样式
+     */
+    protected void initStatusBarStyle() {
+
+    }
+
+    /**
      * @return 是否支持侧滑返回
      */
     protected boolean isSupportSlideBack() {
         CoreSwitchBean page = getIntent().getParcelableExtra(CoreSwitchBean.KEY_SWITCH_BEAN);
         return page == null || page.getBundle() == null || page.getBundle().getBoolean(KEY_SUPPORT_SLIDE_BACK, true);
     }
+
+
 
     /**
      * 打开fragment
@@ -121,6 +138,7 @@ public class BaseActivity extends XPageActivity {
         return (T) openPage(page);
     }
 
+
     /**
      * 切换fragment
      *
@@ -128,8 +146,9 @@ public class BaseActivity extends XPageActivity {
      * @return 打开的fragment对象
      */
     public <T extends XPageFragment> T switchPage(Class<T> clazz) {
-        return openPage(clazz, false);
+        return changePage(clazz);
     }
+
 
     /**
      * 序列化对象

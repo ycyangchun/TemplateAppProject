@@ -10,10 +10,10 @@ public class Constants {
     public static String DEBUG_VERSION = "";//"20190618_01";//服务器版本，打包时间，等
     public static String versionName = "";//1000
     public static String packageName = "";//"zhcwLib";//zhcw 中彩网
-    public static String CHANNELID = "";// 渠道
+    public static String channelId = "";// 渠道
     public static String imeiStr = "";// 手机串号
     public static String uaStr = "";//手机型号
-    public static String DeviceID = "";//设备id MD5
+    public static String deviceId = "";//设备id MD5
 
 
 

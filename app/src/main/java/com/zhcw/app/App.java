@@ -33,6 +33,7 @@ public class App extends BaseApplication{
         buildApp();
         super.onCreate();
         initDb();
+        FileUtilSupply.initFileUtils();
     }
 
     private void initDb() {
@@ -58,7 +59,7 @@ public class App extends BaseApplication{
                 ,DateUtils.yyyyMMdd.get())+"_01";
         //userMgr
         userMgr = UserMgr.getInstance();
-        FileUtilSupply.initFileUtils();
+
 
         switch (server){
             case IConstants.SERVER_CESHI_KAIFA:

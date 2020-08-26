@@ -3,6 +3,7 @@ package com.zhcw.lib.utils.manager;
 import android.text.TextUtils;
 
 import com.zhcw.lib.base.bean.User;
+import com.zhcw.lib.utils.MMKVUtils;
 
 
 public class UserMgr {
@@ -50,9 +51,11 @@ public class UserMgr {
         isLogin = login;
         if(null != user && login){
             loginUserId = user.getUserId();
+            MMKVUtils.put("login_user_id", loginUserId);
         }else {
             loginUserId = null;
             jsessionid = null;
+            MMKVUtils.put("login_user_id", "");
         }
     }
 
@@ -60,6 +63,14 @@ public class UserMgr {
     public boolean isWebChangeUser(String webUserId) {
         if(!TextUtils.isEmpty(webUserId) && isLogin){
             webChangeUser = !loginUserId.equals(webUserId);
+        }
+        return webChangeUser;
+    }
+
+    public boolean isWebChangeUser() {
+        String oldUserId = MMKVUtils.getString("login_user_id", "");
+        if(!TextUtils.isEmpty(oldUserId) && isLogin){
+            webChangeUser = !loginUserId.equals(oldUserId);
         }
         return webChangeUser;
     }
