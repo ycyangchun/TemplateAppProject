@@ -50,5 +50,7 @@ public class UiContract {
         //登录
         public abstract void toLogin(String cell, String psw);
 
+        //登录
+        public abstract void toLogin(String cell, String psw ,String identCode);
     }
 }

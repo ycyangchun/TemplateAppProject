@@ -4,6 +4,7 @@ import com.xuexiang.xutil.common.logger.Logger;
 import com.zhcw.app.base.Constants;
 import com.zhcw.app.base.IConstants;
 import com.zhcw.lib.mvp.IView;
+import com.zhcw.lib.utils.XToastUtils;
 import com.zhcw.lib.utils.manager.UserMgr;
 
 import androidx.lifecycle.Lifecycle;
@@ -102,6 +103,9 @@ public class ZhcwCallback implements CallbackHandler,LifecycleObserver {
             case 0002:
             case 105003:// 登录过时了
                 doRecode3002(transactionType);
+                break;
+            case 102298:// 该用户已在其他设备上登录
+                XToastUtils.error(msg);
                 break;
             case 3001:// 金额不足
 

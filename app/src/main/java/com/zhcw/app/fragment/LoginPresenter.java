@@ -50,13 +50,19 @@ public class LoginPresenter extends UiContract.LoginPresenter {
         this.loginView.setPresenter(this);
     }
 
-
     @Override
     public void toLogin(String cell, String psw) {
+        toLogin(cell, psw, null);
+    }
+
+    @Override
+    public void toLogin(String cell, String psw, String identCode) {
         Map<String, String> map = new HashMap<>();
         map.put("cell", cell);
         map.put("userPwd", psw);
-
+        if (!TextUtils.isEmpty(identCode)) {
+            map.put("identCode", identCode);
+        }
 
         zhcwCallback = new ZhcwCallback(loginView) {
 
@@ -102,7 +108,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
 
     //测试数据库
     private void dbData(String cell, String psw) {
-        if(TextUtils.isEmpty(cell) || TextUtils.isEmpty(psw)) return;
+        if (TextUtils.isEmpty(cell) || TextUtils.isEmpty(psw)) return;
 
         try {
             DbUser dbUser;
@@ -117,7 +123,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
                 internal.insert(dbUser);
             } else {
                 dbUser = list.get(0);
-                if(!cell.equals(dbUser.getMobile()) || !psw.equals(dbUser.getPassword())) {
+                if (!cell.equals(dbUser.getMobile()) || !psw.equals(dbUser.getPassword())) {
                     dbUser.setMobile(cell);
                     dbUser.setPassword(psw);
                     internal.updateData(dbUser);

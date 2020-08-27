@@ -1,11 +1,5 @@
 package com.zhcw.app.utils;
 
-import android.text.TextUtils;
-
-import com.xuexiang.xaop.annotation.DiskCache;
-import com.xuexiang.xaop.annotation.MemoryCache;
-import com.xuexiang.xaop.cache.XDiskCache;
-import com.xuexiang.xaop.cache.XMemoryCache;
 import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.xutil.common.StringUtils;
 import com.zhcw.app.App;
@@ -22,7 +16,7 @@ import com.zhcw.lib.utils.XToastUtils;
 public final class TokenUtils {
 
 
-    private static final String KEY_TOKEN_TIME = "com.zhcw.app.utils.KEY_TOKEN_TIME";
+    private static String KEY_TOKEN_TIME = "KEY_TOKEN_TIME";
     private static final long OVERTIME = 1000 * 60 * 25;
     private TokenUtils() {
         MMKVUtils.init(App.getAppContext());
