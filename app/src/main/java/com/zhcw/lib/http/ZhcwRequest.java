@@ -40,7 +40,7 @@ public class ZhcwRequest {
             header.put("transactionType", busiCode);
             header.put("sysType", sysType);
             header.put("src", Constants.channelId);
-            header.put("platform", "10");// 微信平台不合法
+            header.put("platform", IConstants.platform);// 10 微信平台不合法
             header.put("imei",TextUtils.isEmpty(Constants.imeiStr) ? "no imei" : Constants.imeiStr);
             header.put("ua", TextUtils.isEmpty(Constants.uaStr) ? "no ua" : Constants.uaStr);
             // 对消息包的摘要,

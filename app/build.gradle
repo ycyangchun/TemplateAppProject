@@ -21,7 +21,9 @@ android {
 
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-
+        ndk {
+            abiFilters "armeabi",  "x86"
+        }
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [ moduleName : project.getName() ]

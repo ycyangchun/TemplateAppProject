@@ -9,6 +9,7 @@ public interface IConstants {
 
     String src_platform = "030";// /src中的平台 这个里是不能修改
     String src_project = "100";// src中用来区分平台的 这个需要根据各个平台来修改
+    String platform = "android";
     String SYS_TYPE_M = "M";// 马上奖系统
     String SYS_TYPE_T = "T";// 代表投注大赛系统
     String SYS_TYPE_Z = "Z";// 代表资讯系统
