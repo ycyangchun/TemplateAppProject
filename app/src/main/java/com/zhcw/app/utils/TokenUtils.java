@@ -37,10 +37,6 @@ public final class TokenUtils {
     }
 
 
-    public void clearToken() {
-        MMKVUtils.put(KEY_TOKEN_TIME,"");
-    }
-
 
     public String initToken(String token) {
         MMKVUtils.put(KEY_TOKEN_TIME,System.currentTimeMillis());
@@ -48,15 +44,15 @@ public final class TokenUtils {
     }
 
     public Boolean getKeyToken() {
-        boolean isOverTime = true;
+        boolean hasToke;
         long time = MMKVUtils.getLong(KEY_TOKEN_TIME,0L);
-        if(time == 0 || (System.currentTimeMillis() - time) < OVERTIME){
-            isOverTime = false;
+        if(System.currentTimeMillis() - time >= OVERTIME){
+            hasToke = false;
         }else {
-            clearToken();
+            hasToke = true;
         }
 
-        return isOverTime;
+        return hasToke;
     }
 
     /**
@@ -82,7 +78,6 @@ public final class TokenUtils {
     public void handleLogoutSuccess() {
 //        MobclickAgent.onProfileSignOff();
         //登出时，清除账号信息
-        clearToken();
         XToastUtils.success("登出成功！");
         //跳转到登录页
         ActivityUtils.startActivity(LoginActivity.class);
