@@ -17,7 +17,7 @@ import androidx.lifecycle.OnLifecycleEvent;
  */
 public class ZhcwCallback implements CallbackHandler,LifecycleObserver {
 
-    private String TAG = this.getClass().getSimpleName();
+    private String TAG = this.getClass().getName();
     private IView iView;
     private ZhcwCallback model;
     private int errShow = IConstants.ERR_NO_SHOW;//网络请求错误显示处理
