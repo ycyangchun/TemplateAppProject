@@ -19,13 +19,15 @@ package com.zhcw.lib.db.entity;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import androidx.annotation.NonNull;
+
 @DatabaseTable(tableName = "dbUser")
 public class DbUser {
 
     @DatabaseField(generatedId = true)
     private long Id;
-    @DatabaseField(columnName = "username")
-    private String UserName;
+    @DatabaseField(columnName = "psw")
+    private String password;
     @DatabaseField(columnName = "mobile")
     private String mobile;
     @DatabaseField(columnName = "type")
@@ -40,12 +42,12 @@ public class DbUser {
         return this;
     }
 
-    public String getUserName() {
-        return UserName;
+    public String getPassword() {
+        return password;
     }
 
-    public DbUser setUserName(String userName) {
-        UserName = userName;
+    public DbUser setPassword(String password) {
+        this.password = password;
         return this;
     }
 
@@ -71,7 +73,7 @@ public class DbUser {
     public String toString() {
         return "DbUser{" +
                 "Id=" + Id +
-                ", UserName='" + UserName + '\'' +
+                ", password='" + password + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", type=" + type +
                 '}';

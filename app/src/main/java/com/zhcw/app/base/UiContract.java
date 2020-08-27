@@ -28,7 +28,7 @@ public class UiContract {
     public interface LoginView extends IView<LoginPresenter>{
 
         //登录
-        void toLogin(String userName, String psw);
+        void toLogin(String cell, String psw);
 
         //登录成功
         void successLogin();
@@ -48,7 +48,7 @@ public class UiContract {
         }
 
         //登录
-        public abstract void toLogin(String userName, String psw);
+        public abstract void toLogin(String cell, String psw);
 
     }
 }

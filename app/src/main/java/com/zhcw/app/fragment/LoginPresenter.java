@@ -17,16 +17,25 @@
 
 package com.zhcw.app.fragment;
 
+import android.text.TextUtils;
+
 import com.lzy.okgo.OkGo;
+import com.xuexiang.xormlite.InternalDataBaseRepository;
+import com.xuexiang.xormlite.db.DBService;
 import com.xuexiang.xutil.common.logger.Logger;
+import com.xuexiang.xutil.system.AppExecutors;
 import com.zhcw.app.App;
 import com.zhcw.app.base.IConstants;
 import com.zhcw.app.base.UiContract;
 import com.zhcw.app.net.DoNetWork;
+import com.zhcw.app.utils.TokenUtils;
 import com.zhcw.lib.base.bean.User;
+import com.zhcw.lib.db.entity.DbUser;
 import com.zhcw.lib.http.ZhcwCallback;
 
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LoginPresenter extends UiContract.LoginPresenter {
@@ -43,21 +52,28 @@ public class LoginPresenter extends UiContract.LoginPresenter {
 
 
     @Override
-    public void toLogin(String userName, String psw) {
-        Map<String,String> map = new HashMap<>();
-        map.put("cell","17600145229");
-        map.put("userPwd", "123456");
+    public void toLogin(String cell, String psw) {
+        Map<String, String> map = new HashMap<>();
+        map.put("cell", cell);
+        map.put("userPwd", psw);
 
 
-        zhcwCallback = new ZhcwCallback(loginView){
+        zhcwCallback = new ZhcwCallback(loginView) {
 
             @Override
             public void doRecode0000(String transactionType, Object obj) {
                 super.doRecode0000(transactionType, obj);
-                User u = (User)obj;
-                Logger.e(transactionType + "   " + u.getUserId());
+                User u = (User) obj;
+                Logger.e(transactionType + "  userId = " + u.getUserId());
                 App.userMgr.setUser(u);
+                TokenUtils.getInstance().handleLoginSuccess(u.getUserId());
                 loginView.successLogin();
+                AppExecutors.get().poolIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        dbData(cell, psw);
+                    }
+                });
             }
 
             @Override
@@ -68,7 +84,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
         };
         //错误处理 toast
         zhcwCallback.loadingErrToast(false);
-        DoNetWork.getClient().login(loginBusiCode, map,zhcwCallback);
+        DoNetWork.getClient().login(loginBusiCode, map, zhcwCallback);
     }
 
 
@@ -82,5 +98,38 @@ public class LoginPresenter extends UiContract.LoginPresenter {
         super.onDestroy();
         zhcwCallback.onDestroy();
         OkGo.getInstance().cancelTag(loginBusiCode);
+    }
+
+    //测试数据库
+    private void dbData(String cell, String psw) {
+        if(TextUtils.isEmpty(cell) || TextUtils.isEmpty(psw)) return;
+
+        try {
+            DbUser dbUser;
+            DBService<DbUser> internal = InternalDataBaseRepository.getInstance().getDataBase(DbUser.class);
+//            internal.deleteAll();
+            List<DbUser> list = internal.queryAndOrderBy("mobile", cell, "id", false);
+            if (null == list || list.size() < 1) {
+                dbUser = new DbUser();
+                dbUser.setMobile(cell);
+                dbUser.setPassword(psw);
+                dbUser.setType(1);
+                internal.insert(dbUser);
+            } else {
+                dbUser = list.get(0);
+                if(!cell.equals(dbUser.getMobile()) || !psw.equals(dbUser.getPassword())) {
+                    dbUser.setMobile(cell);
+                    dbUser.setPassword(psw);
+                    internal.updateData(dbUser);
+                }
+            }
+
+            Logger.d(internal.queryAll().toString());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

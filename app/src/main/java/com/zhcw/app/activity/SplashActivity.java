@@ -17,7 +17,6 @@
 
 package com.zhcw.app.activity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
@@ -27,29 +26,22 @@ import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xaop.annotation.Permission;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xaop.consts.PermissionConsts;
-import com.xuexiang.xormlite.ExternalDataBaseRepository;
-import com.xuexiang.xormlite.InternalDataBaseRepository;
-import com.xuexiang.xormlite.db.DBService;
 import com.xuexiang.xui.widget.activity.BaseSplashActivity;
 import com.xuexiang.xutil.app.ActivityUtils;
-import com.xuexiang.xutil.common.StringUtils;
 import com.xuexiang.xutil.common.logger.Logger;
 import com.xuexiang.xutil.system.AppExecutors;
+import com.zhcw.app.App;
 import com.zhcw.app.R;
 import com.zhcw.app.base.Constants;
-import com.zhcw.app.base.ToastList;
+import com.zhcw.app.utils.ToastListUtil;
 import com.zhcw.app.utils.TokenUtils;
-import com.zhcw.lib.db.entity.DbUser;
 import com.zhcw.lib.utils.DeviceID;
 import com.zhcw.lib.utils.FileUtilSupply;
 import com.zhcw.lib.utils.MMKVUtils;
 import com.zhcw.lib.utils.SplashUtils;
-import com.zhcw.lib.utils.XToastUtils;
 import com.zhcw.lib.utils.ZhcwUtils;
+import com.zhcw.lib.utils.manager.UserMgr;
 import com.zhcw.lib.utils.sdkinit.CrashHandler;
-
-import java.sql.SQLException;
-import java.util.List;
 
 import me.jessyan.autosize.internal.CancelAdapt;
 
@@ -115,7 +107,7 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
     // 主页
     private void toMain() {
         initFileStorage();
-        if (TokenUtils.hasToken()) {
+        if (TokenUtils.getInstance().getKeyToken()) {
             ActivityUtils.startActivity(MainActivity.class);
         } else {
             ActivityUtils.startActivity(LoginActivity.class);
@@ -134,13 +126,6 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
             }
         });
 
-        AppExecutors.get().poolIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                dbData();
-            }
-        });
-
         initDeviceData();
     }
 
@@ -154,38 +139,7 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
 
     }
 
-    //测试数据库
-    private void dbData() {
 
-        DbUser dbUser;
-        DBService<DbUser> internal = InternalDataBaseRepository.getInstance().getDataBase(DbUser.class);
-
-        try {
-//            internal.deleteAll();
-            List<DbUser> list = internal.queryAndOrderBy("username","yc","id",false);
-            if(null == list || list.size() < 1){
-                dbUser = new DbUser();
-                dbUser.setUserName("yc");
-                dbUser.setMobile("188" + (Math.random() * 100));
-                dbUser.setType(1);
-                internal.insert(dbUser);
-            }else{
-                Logger.d(internal.queryAll().toString());
-                dbUser = list.get(0);
-                dbUser.setMobile((Math.random() * 100)+"222");
-
-                internal.updateData(dbUser);
-
-            }
-
-            Logger.d(internal.queryAll().toString());
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
     //初始cache
     private void initCacheTxt() {
@@ -196,9 +150,9 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
         zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
 //      Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
 
-        Logger.d(ToastList.getInstance().getMapValue("DC101062", "默认key 11111111111111111"));
+        Logger.d(ToastListUtil.getInstance().getMapValue("DC101062", "默认key 11111111111111111"));
 //      ToastList.getInstance().removeToast();
-        Logger.d(ToastList.getInstance().getMapValue("DC101059", "默认key 22"));
+        Logger.d(ToastListUtil.getInstance().getMapValue("DC101059", "默认key 22"));
 
 
     }

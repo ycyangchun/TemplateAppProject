@@ -1,71 +1,62 @@
-/*
- * Copyright (C) 2019 xuexiangjys(xuexiangjys@163.com)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 package com.zhcw.app.utils;
 
-import android.content.Context;
+import android.text.TextUtils;
 
-import com.tencent.mmkv.MMKV;
-import com.umeng.analytics.MobclickAgent;
+import com.xuexiang.xaop.annotation.DiskCache;
+import com.xuexiang.xaop.annotation.MemoryCache;
+import com.xuexiang.xaop.cache.XDiskCache;
+import com.xuexiang.xaop.cache.XMemoryCache;
 import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.xutil.common.StringUtils;
+import com.zhcw.app.App;
 import com.zhcw.app.activity.LoginActivity;
+import com.zhcw.lib.utils.MMKVUtils;
 import com.zhcw.lib.utils.XToastUtils;
+
+
 
 /**
  * Token管理工具
- *
- * @author xuexiang
- * @since 2019-11-17 22:37
+ * 本地记录登录token 时长25分钟,服务器超时 30分钟
  */
 public final class TokenUtils {
 
-    private static String sToken;
 
-    private static final String KEY_TOKEN = "com.zhcw.app.utils.KEY_TOKEN";
-
+    private static final String KEY_TOKEN_TIME = "com.zhcw.app.utils.KEY_TOKEN_TIME";
+    private static final long OVERTIME = 1000 * 60 * 25;
     private TokenUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
+        MMKVUtils.init(App.getAppContext());
     }
 
-    /**
-     * 初始化Token信息
-     */
-    public static void init(Context context) {
-        MMKV.initialize(context);
-        sToken = MMKV.defaultMMKV().decodeString(KEY_TOKEN, "");
+    private static class Instance {
+        private static final TokenUtils INSTANCE = new TokenUtils();
     }
 
-    public static void setToken(String token) {
-        sToken = token;
-        MMKV.defaultMMKV().putString(KEY_TOKEN, token);
+    public static TokenUtils getInstance() {
+        return TokenUtils.Instance.INSTANCE;
     }
 
-    public static void clearToken() {
-        sToken = null;
-        MMKV.defaultMMKV().remove(KEY_TOKEN);
+
+    public void clearToken() {
+        MMKVUtils.put(KEY_TOKEN_TIME,"");
     }
 
-    public static String getToken() {
-        return sToken;
+
+    public String initToken(String token) {
+        MMKVUtils.put(KEY_TOKEN_TIME,System.currentTimeMillis());
+        return token;
     }
 
-    public static boolean hasToken() {
-        return MMKV.defaultMMKV().containsKey(KEY_TOKEN);
+    public Boolean getKeyToken() {
+        boolean isOverTime = true;
+        long time = MMKVUtils.getLong(KEY_TOKEN_TIME,0L);
+        if(time == 0 || (System.currentTimeMillis() - time) < OVERTIME){
+            isOverTime = false;
+        }else {
+            clearToken();
+        }
+
+        return isOverTime;
     }
 
     /**
@@ -73,11 +64,11 @@ public final class TokenUtils {
      *
      * @param token 账户信息
      */
-    public static boolean handleLoginSuccess(String token) {
+    public boolean handleLoginSuccess(String token) {
         if (!StringUtils.isEmpty(token)) {
-            XToastUtils.success("登录成功！");
 //            MobclickAgent.onProfileSignIn("github", token);
-            setToken(token);
+            XToastUtils.success("登录成功！");
+            initToken(token);
             return true;
         } else {
             XToastUtils.error("登录失败！");
@@ -88,7 +79,7 @@ public final class TokenUtils {
     /**
      * 处理登出的事件
      */
-    public static void handleLogoutSuccess() {
+    public void handleLogoutSuccess() {
 //        MobclickAgent.onProfileSignOff();
         //登出时，清除账号信息
         clearToken();

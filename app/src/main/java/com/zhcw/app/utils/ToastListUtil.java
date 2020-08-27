@@ -15,7 +15,7 @@
  *
  */
 
-package com.zhcw.app.base;
+package com.zhcw.app.utils;
 
 import com.google.gson.reflect.TypeToken;
 import com.xuexiang.xaop.annotation.DiskCache;
@@ -27,7 +27,7 @@ import com.zhcw.lib.utils.ZhcwUtils;
 
 import java.util.HashMap;
 
-public class ToastList {
+public class ToastListUtil {
 
     /**
      * 实例
@@ -36,15 +36,16 @@ public class ToastList {
      *  Logger.d(ToastList.getInstance().getMapValue("DC101059","默认key 22"));
      */
     private final String toastName = "toastlist.txt";
+    private static final String KEY_TOAST = "toastMap";
     private static HashMap<String,String> toastBean;// toast
     private static String timeId = "-1";
 
     private static class Instance {
-        private static final ToastList INSTANCE = new ToastList();
+        private static final ToastListUtil INSTANCE = new ToastListUtil();
     }
 
-    public static ToastList getInstance() {
-        return ToastList.Instance.INSTANCE;
+    public static ToastListUtil getInstance() {
+        return ToastListUtil.Instance.INSTANCE;
     }
 
     public static String getTimeId() {
@@ -54,11 +55,12 @@ public class ToastList {
     /**
      * 读取 toastList
      * zhcwUtils 保存，便于查看用
-     * DiskCache 应用中使用
+     * DiskCache("toastMap") 应用中使用，
+     * 调用方法时，如果缓存中没有则会创建并保存到 DiskCache
      * @return
      */
-    @DiskCache("toastMap")
-    public HashMap<String ,String> getToastMap(){
+    @DiskCache(KEY_TOAST)
+    public HashMap<String ,String> initToastMap(){
         return initToastList(toastName);
     }
 
@@ -68,7 +70,7 @@ public class ToastList {
      */
     public void removeToast(){
         toastBean = null;
-        XDiskCache.getInstance().remove("toastMap");
+        XDiskCache.getInstance().remove(KEY_TOAST);
     }
 
 
@@ -98,7 +100,7 @@ public class ToastList {
      */
     public String getMapValue(String mapK ,String defaultV){
         if(null == toastBean){
-            toastBean = ToastList.getInstance().getToastMap();
+            toastBean = ToastListUtil.getInstance().initToastMap();
         }
         return getMapValue(toastBean,mapK,defaultV);
     }

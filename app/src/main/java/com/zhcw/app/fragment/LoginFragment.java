@@ -149,8 +149,8 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
 
 
     @Override
-    public void toLogin(String userName, String psw) {
-        loginPresenter.toLogin(userName, psw);
+    public void toLogin(String cell, String psw) {
+        loginPresenter.toLogin(cell, psw);
     }
 
     @Override
