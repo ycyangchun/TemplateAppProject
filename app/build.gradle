@@ -138,6 +138,10 @@ dependencies {
     //ANR异常捕获
     implementation 'com.github.anrwatchdog:anrwatchdog:1.4.0'
 
+    //XHttp2本身的设计就是基于统一返回格式的请求，对于无固定返回格式的请求推荐使用okhttp-OkGo
+    implementation 'com.lzy.net:okgo:3.0.4'
+    implementation 'com.lzy.net:okrx2:2.0.2'
+    implementation 'com.lzy.net:okserver:2.0.5'
 
     //美团多渠道打包
 //    implementation 'com.meituan.android.walle:library:1.1.6'

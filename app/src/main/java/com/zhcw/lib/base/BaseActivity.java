@@ -18,7 +18,9 @@
 package com.zhcw.lib.base;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.xuexiang.xpage.base.XPageActivity;
 import com.xuexiang.xpage.base.XPageFragment;
@@ -28,6 +30,12 @@ import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.widget.slideback.SlideBack;
 import com.xuexiang.xutil.XUtil;
+import com.xuexiang.xutil.app.AppUtils;
+import com.xuexiang.xutil.resource.ResourceUtils;
+import com.zhcw.app.base.Constants;
+import com.zhcw.app.base.IConstants;
+import com.zhcw.lib.utils.DeviceID;
+import com.zhcw.lib.utils.ZhcwUtils;
 import com.zhcw.lib.utils.manager.ActivityStackManager;
 import com.zhcw.lib.utils.sdkinit.CrashHandler;
 
@@ -67,7 +75,7 @@ public class BaseActivity extends XPageActivity {
         Tag = this.getLocalClassName();
         baseAct = this;
         ActivityStackManager.getScreenManager().pushActivity(baseAct);//
-
+        initChannelSrc();
         // 侧滑回调
         if (isSupportSlideBack()) {
             SlideBack.with(this)
@@ -103,6 +111,24 @@ public class BaseActivity extends XPageActivity {
     protected void initStatusBarStyle() {
 
     }
+
+    //渠道id
+    public void initChannelSrc() {
+        String channel = AppUtils.getStringValueInMetaData("UMENG_CHANNEL");
+        if(!TextUtils.isEmpty(channel)) {
+            if (channel.contains("channelid")) {
+                Constants.channelId = channel.substring("channelid".length(), channel.length());
+            } else {
+                Constants.channelId = channel.substring(0, 10);
+            }
+        }
+        if(TextUtils.isEmpty(Constants.channelId)) {
+            Constants.channelId = ResourceUtils.readStringFromAssert("channel.txt");
+            Constants.channelId = Constants.channelId.substring(0, 10);
+        }
+        Constants.channelId += "|" + IConstants.src_platform + IConstants.src_project + Constants.versionName;
+    }
+
 
     /**
      * @return 是否支持侧滑返回

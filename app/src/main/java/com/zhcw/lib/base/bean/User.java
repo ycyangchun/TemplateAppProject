@@ -17,7 +17,7 @@
 
 package com.zhcw.lib.base.bean;
 
-public class User {
+public class User extends BaseMessage{
     private String userId;
 
     public String getUserId() {

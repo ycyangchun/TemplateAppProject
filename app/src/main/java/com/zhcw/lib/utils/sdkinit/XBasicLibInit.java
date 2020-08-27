@@ -19,19 +19,15 @@ package com.zhcw.lib.utils.sdkinit;
 
 import android.app.Application;
 
-import com.zhcw.app.App;
-import com.zhcw.app.base.Constants;
-import com.zhcw.lib.base.BaseApplication;
-import com.zhcw.lib.base.BaseActivity;
-import com.zhcw.lib.utils.MMKVUtils;
-import com.zhcw.lib.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
-import com.xuexiang.xhttp2.XHttpSDK;
+import com.xuexiang.xpage.AppPageConfig;
 import com.xuexiang.xpage.PageConfig;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.XUI;
 import com.xuexiang.xutil.XUtil;
-import com.xuexiang.xutil.common.StringUtils;
+import com.zhcw.app.App;
+import com.zhcw.lib.base.BaseActivity;
+import com.zhcw.lib.utils.MMKVUtils;
 
 /**
  * X系列基础库初始化
@@ -56,7 +52,7 @@ public final class XBasicLibInit {
         initXUtil(application);
 
         //网络请求框架
-        initXHttp2(application);
+//        initXHttp2(application);
 
         //页面框架
         initXPage(application);
@@ -81,14 +77,14 @@ public final class XBasicLibInit {
      */
     private static void initXHttp2(Application application) {
         //初始化网络请求框架，必须首先执行
-        XHttpSDK.init(application);
+//        XHttpSDK.init(application);
         //需要调试的时候执行
-        if (App.isDebug()) {
-            XHttpSDK.debug();
-        }
+//        if (App.isDebug()) {
+//            XHttpSDK.debug();
+//        }
 //        XHttpSDK.debug(new CustomLoggingInterceptor()); //设置自定义的日志打印拦截器
         //设置网络请求的全局基础地址
-        XHttpSDK.setBaseUrl(Constants.HOST_URL_Z);
+//        XHttpSDK.setBaseUrl(Constants.HOST_URL_Z);
         //设置动态参数添加拦截器
 //        XHttpSDK.addInterceptor(new CustomDynamicInterceptor());
         //请求失效校验拦截器
@@ -103,7 +99,7 @@ public final class XBasicLibInit {
                 //页面注册
                 .setPageConfiguration(context -> {
                     //自动注册页面,是编译时自动生成的，build一下就出来了
-                    return PageConfig.getInstance().getPages();
+                    return AppPageConfig.getInstance().getPages();
                 })
                 .debug(App.isDebug() ? "PageLog" : null)
                 .enableWatcher(App.isDebug())

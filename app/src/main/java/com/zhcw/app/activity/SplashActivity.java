@@ -17,6 +17,9 @@
 
 package com.zhcw.app.activity;
 
+import android.content.Intent;
+import android.os.Build;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.xuexiang.templateproject.activity.MainActivity;
@@ -29,14 +32,19 @@ import com.xuexiang.xormlite.InternalDataBaseRepository;
 import com.xuexiang.xormlite.db.DBService;
 import com.xuexiang.xui.widget.activity.BaseSplashActivity;
 import com.xuexiang.xutil.app.ActivityUtils;
+import com.xuexiang.xutil.common.StringUtils;
 import com.xuexiang.xutil.common.logger.Logger;
 import com.xuexiang.xutil.system.AppExecutors;
 import com.zhcw.app.R;
+import com.zhcw.app.base.Constants;
 import com.zhcw.app.base.ToastList;
+import com.zhcw.app.utils.TokenUtils;
 import com.zhcw.lib.db.entity.DbUser;
+import com.zhcw.lib.utils.DeviceID;
 import com.zhcw.lib.utils.FileUtilSupply;
 import com.zhcw.lib.utils.MMKVUtils;
 import com.zhcw.lib.utils.SplashUtils;
+import com.zhcw.lib.utils.XToastUtils;
 import com.zhcw.lib.utils.ZhcwUtils;
 import com.zhcw.lib.utils.sdkinit.CrashHandler;
 
@@ -89,14 +97,15 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
             handleRequestPermission(mWelcomeLayout);
         });
         //设置动态申请权限切片 申请权限被拒绝的事件响应监听
-        XAOP.setOnPermissionDeniedListener(permissionsDenied ->
-//                XToastUtils.error("权限申请被拒绝:" + StringUtils.listToString(permissionsDenied, ","))
-                        showPrivacy()
+        XAOP.setOnPermissionDeniedListener(permissionsDenied -> {
+//                    XToastUtils.error("权限申请被拒绝:" + StringUtils.listToString(permissionsDenied, ","));
+                    showPrivacy();
+                }
         );
     }
 
     @SingleClick
-    @Permission({PermissionConsts.STORAGE, PermissionConsts.PHONE, PermissionConsts.LOCATION})
+    @Permission({PermissionConsts.STORAGE, PermissionConsts.LOCATION})
     private void handleRequestPermission(View v) {// 必须有参数
 //        XToastUtils.toast("权限申请通过！");
         MMKVUtils.put("key_agree_privacy", true);
@@ -106,8 +115,11 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
     // 主页
     private void toMain() {
         initFileStorage();
-
-        ActivityUtils.startActivity(MainActivity.class);
+        if (TokenUtils.hasToken()) {
+            ActivityUtils.startActivity(MainActivity.class);
+        } else {
+            ActivityUtils.startActivity(LoginActivity.class);
+        }
         finish();
     }
 
@@ -129,6 +141,16 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
             }
         });
 
+        initDeviceData();
+    }
+
+    //设备信息
+    public void initDeviceData() {
+        Constants.uaStr = Build.MODEL;// 手机型号
+        Constants.deviceId = DeviceID.getInstance().getDeviceID();
+        Constants.imeiStr = DeviceID.getInstance().getImei();
+        if (TextUtils.isEmpty(Constants.imeiStr))
+            Constants.imeiStr = DeviceID.getInstance().getDeviceId();
 
     }
 

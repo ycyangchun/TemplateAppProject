@@ -1,5 +1,7 @@
 package com.zhcw.app;
 
+import android.text.TextUtils;
+
 import com.xuexiang.xormlite.ExternalDataBaseRepository;
 import com.xuexiang.xormlite.InternalDataBaseRepository;
 import com.xuexiang.xormlite.annotation.DataBase;
@@ -13,6 +15,7 @@ import com.zhcw.app.base.IConstants;
 import com.zhcw.lib.base.BaseApplication;
 import com.zhcw.lib.db.ExternalDataBase;
 import com.zhcw.lib.db.InternalDataBase;
+import com.zhcw.lib.http.MyCookieStoreListener;
 import com.zhcw.lib.utils.FileUtilSupply;
 import com.zhcw.lib.utils.manager.UserMgr;
 
@@ -22,7 +25,7 @@ import java.util.Date;
  *  app Application
  */
 @DataBase(name = "internal", type = DataBaseType.INTERNAL)
-public class App extends BaseApplication{
+public class App extends BaseApplication implements MyCookieStoreListener {
 
     public static UserMgr userMgr;// 用户信息
     //TODO 设置服务器
@@ -82,4 +85,20 @@ public class App extends BaseApplication{
         return Constants.isLog;
     }
 
+
+    /////////////////////////////
+    @Override
+    public void setJsessionid(String newCookie) {
+        App.userMgr.setJsessionid(newCookie);
+    }
+
+    @Override
+    public String getJsessionid() {
+        return App.userMgr.getJsessionid();
+    }
+
+    @Override
+    public boolean isLogin() {
+        return App.userMgr.isLogin() && !TextUtils.isEmpty(getJsessionid());
+    }
 }

@@ -1,8 +1,10 @@
 package com.zhcw.lib.utils;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings.Secure;
@@ -15,13 +17,15 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.security.MessageDigest;
 
+import androidx.core.app.ActivityCompat;
+
 /**
  * 设备信息
  */
 public class DeviceID {
-    public Context context;
+    private Context context;
 
-    public DeviceID(Context context) {
+    private DeviceID(Context context) {
         this.context = context;
     }
 
@@ -39,8 +43,18 @@ public class DeviceID {
 
     public String getImei() {
         TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        @SuppressLint("MissingPermission") String szImei = TelephonyMgr.getDeviceId();
-        //System.out.println("getImei() = "+szImei);
+        String szImei = "";
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return szImei;
+        }
+        szImei = TelephonyMgr.getDeviceId();
         return szImei;
     }
 
@@ -51,8 +65,18 @@ public class DeviceID {
 
     public String getImsi() {
         TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        @SuppressLint("MissingPermission") String szImsi = TelephonyMgr.getSubscriberId();
-        //System.out.println("getImsi() = "+szImsi);
+        String szImsi = "";
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return szImsi;
+        }
+        szImsi = TelephonyMgr.getSubscriberId();
         return szImsi;
     }
 
@@ -64,8 +88,18 @@ public class DeviceID {
 
     public String getSSN() {
         TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        @SuppressLint("MissingPermission") String SimSerialNumber = TelephonyMgr.getSimSerialNumber();
-        //System.out.println("getSSN() = "+SimSerialNumber);
+        String SimSerialNumber = "";
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return SimSerialNumber;
+        }
+        SimSerialNumber = TelephonyMgr.getSimSerialNumber();
         return SimSerialNumber;
     }
 

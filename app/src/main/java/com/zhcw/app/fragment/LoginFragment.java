@@ -30,18 +30,15 @@ import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.button.roundbutton.RoundButton;
 import com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText;
 import com.xuexiang.xutil.app.ActivityUtils;
-import com.xuexiang.xutil.common.RandomUtils;
 import com.zhcw.app.R;
 import com.zhcw.app.base.UiContract;
-import com.zhcw.app.utils.TokenUtils;
 import com.zhcw.lib.base.BaseFragment;
-import com.zhcw.lib.mvp.IPresenter;
 import com.zhcw.lib.utils.XToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-@Page(anim = CoreAnim.none, name = "loginPage")
+@Page(name = "loginFragment",anim = CoreAnim.none)
 public class LoginFragment extends BaseFragment implements UiContract.LoginView {
 
     @BindView(R.id.et_phone_number)

@@ -47,6 +47,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
+
         <!--通用浏览器-->
         <activity
             android:name="com.xuexiang.templateproject.core.webview.AgentWebActivity"
@@ -127,6 +128,13 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="640" />
+
+
+        <activity
+            android:name="com.zhcw.app.activity.LoginActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
     </application>
 
