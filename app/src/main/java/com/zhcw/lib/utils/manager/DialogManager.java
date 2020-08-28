@@ -20,7 +20,7 @@ public class DialogManager {
         private static final DialogManager INSTANCE = new DialogManager();
     }
 
-    public static DialogManager getInstance() {
+    public static DialogManager getIT() {
         return DialogManager.Instance.INSTANCE;
     }
 
@@ -67,12 +67,13 @@ public class DialogManager {
      * @param ctx
      * @param content
      */
-    public void yzmDialog(Context ctx, String content, DialogManager.DialogListener listener){
+    public void yzmDialog(Context ctx, String content, String phoneNumber,DialogManager.DialogListener listener){
         if(null != ctx) {
             dialog = new YzmDialog(ctx)
                     .setTitle(ToastListUtil.getIT().getMV("BC350042",
                             XUtil.getResources().getString(R.string.login_yzm)))
                     .setContent(content)
+                    .setPhoneNumber(phoneNumber)
                     .setListener(listener)
                     .setNegativeText("取消")
                     .setPositiveText("确定");

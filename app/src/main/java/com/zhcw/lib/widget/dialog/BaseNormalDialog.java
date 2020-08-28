@@ -118,4 +118,9 @@ public abstract class BaseNormalDialog<T extends BaseNormalDialog> extends BaseS
     public OnDialogClickListener getNeutralListener() {
         return neutralListener;
     }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+    }
 }

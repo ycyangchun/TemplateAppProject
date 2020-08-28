@@ -88,7 +88,7 @@
                 android:textColorHint="@color/c_text02"
                 android:textSize="@dimen/text_15" />
 
-            <Button
+            <TextView
                 android:id="@+id/yzm_bnt"
                 android:layout_marginLeft="10dp"
                 android:layout_width="102dp"
