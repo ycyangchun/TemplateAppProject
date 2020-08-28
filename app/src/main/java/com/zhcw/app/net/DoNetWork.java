@@ -17,6 +17,7 @@ import com.zhcw.lib.http.ZhcwCallback;
 import com.zhcw.lib.http.ZhcwRequest;
 import com.zhcw.lib.http.ZhcwRequestNew;
 import com.zhcw.lib.utils.JsonUtils;
+import com.zhcw.lib.utils.XToastUtils;
 
 import org.json.JSONObject;
 
@@ -56,18 +57,17 @@ public class DoNetWork {
         JsonCallback<BaseBean<User>> jsonCallback = new JsonCallback<BaseBean<User>>() {};
         jsonCallback.setCallbackHandler(zhcwCallback);
 
-        map = request.encryptPostParam(url,busiCode, IConstants.SYS_TYPE_U, map, false);
-        OkGo.<BaseBean<User>>post(url)//
-                .headers(store.getHttpHeaders(url))
-                .tag(busiCode)//
-                .params(map,true)
-                .execute(jsonCallback);
+        post(url, busiCode, IConstants.SYS_TYPE_U, map, jsonCallback);
     }
 
 
 
     /////////////////// 测试用 /////////////////////////
 
+    public void post(String busiCode, Map<String, String> map){
+        String url = Constants.HOST_URL;
+        post(url, busiCode, IConstants.SYS_TYPE_U, map);
+    }
 
 
     public void post(String url,String busiCode, String sysType,Map<String, String> map){
@@ -75,10 +75,10 @@ public class DoNetWork {
         StringDecipherCallback stringDecipherCallback = new StringDecipherCallback(){
             @Override
             public void onSuccess(Response<String> response) {
-
+                System.out.println(response.body());
             }
         };
-        post(url, busiCode, IConstants.SYS_TYPE_U, map, stringDecipherCallback);
+        post(url, busiCode, sysType, map, stringDecipherCallback);
     }
 
 

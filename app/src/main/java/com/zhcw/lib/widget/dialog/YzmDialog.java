@@ -7,19 +7,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.xui.utils.CountDownButtonHelper;
 import com.xuexiang.xui.utils.KeyboardUtils;
+import com.xuexiang.xutil.app.ActivityUtils;
 import com.zhcw.app.R;
+import com.zhcw.app.activity.LoginActivity;
 import com.zhcw.app.base.UiContract;
 import com.zhcw.app.fragment.LoginPresenter;
 import com.zhcw.lib.mvp.IView;
 import com.zhcw.lib.utils.XToastUtils;
+import com.zhcw.lib.utils.manager.ActivityStackManager;
 import com.zhcw.lib.utils.manager.DialogManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract.LoginView {
+public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract.LoginView ,UiContract.VerifyView{
 
     private static int STYLE_DEFAULT = STYLE_MOBAN;
 
@@ -32,8 +36,10 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
     private String phoneNumber, psw;
     private UiContract.LoginPresenter loginPresenter;
 
+    private Context mContext;
     public YzmDialog(@NonNull Context context) {
         super(context);
+        this.mContext = context;
         init();
     }
 
@@ -47,7 +53,7 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        new LoginPresenter(this);
+        new LoginPresenter(mContext,this,this);
     }
 
     private void initView() {
@@ -57,20 +63,13 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
         yzm_bnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getVerifyCode();
+                mCountDownHelper.start();
+                verifyCode("LOGIN", phoneNumber, psw);
             }
         });
     }
 
 
-    /**
-     * 获取验证码
-     */
-    private void getVerifyCode() {
-        // TODO: 2019-11-18 这里只是界面演示而已
-        XToastUtils.warning("只是演示，验证码请随便输");
-        mCountDownHelper.start();
-    }
 
     public YzmDialog setListener(DialogManager.DialogListener listener) {
         if (null != listener) {
@@ -127,6 +126,10 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
     @Override
     public void successLogin() {
         dismiss();
+        if(mContext instanceof LoginActivity){
+            ActivityUtils.startActivity(MainActivity.class);
+            ((LoginActivity) mContext).finish();
+        }
     }
 
     @Override
@@ -142,5 +145,10 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
     @Override
     public void setPresenter(UiContract.LoginPresenter presenter) {
         loginPresenter = presenter;
+    }
+
+    @Override
+    public void verifyCode(String type, String cell, String psw) {
+        loginPresenter.verifyCode(type, cell, psw);
     }
 }

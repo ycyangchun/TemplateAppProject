@@ -17,6 +17,8 @@
 
 package com.zhcw.app.fragment;
 
+import android.app.UiAutomation;
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.lzy.okgo.OkGo;
@@ -32,6 +34,9 @@ import com.zhcw.app.utils.TokenUtils;
 import com.zhcw.lib.base.bean.User;
 import com.zhcw.lib.db.entity.DbUser;
 import com.zhcw.lib.http.ZhcwCallback;
+import com.zhcw.lib.utils.XToastUtils;
+import com.zhcw.lib.utils.manager.DialogManager;
+import com.zhcw.lib.utils.manager.UserMgr;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -41,15 +46,28 @@ import java.util.Map;
 public class LoginPresenter extends UiContract.LoginPresenter {
 
     private UiContract.LoginView loginView;
+    private UiContract.VerifyView verifyView;
+
     private ZhcwCallback zhcwCallback;
     private final String loginBusiCode = "10020102";
+    private final String verifyBusiCode = "10020107";
 
-    public LoginPresenter(UiContract.LoginView loginView) {
+    private Context mContext;
+    public LoginPresenter(Context context ,UiContract.LoginView loginView) {
         super(loginView);
+        this.mContext =  context;
         this.loginView = loginView;
         this.loginView.setPresenter(this);
     }
 
+    public LoginPresenter(Context context,UiContract.LoginView loginView, UiContract.VerifyView verifyView) {
+        super(loginView);
+        this.mContext =  context;
+        this.loginView = loginView;
+        this.verifyView = verifyView;
+        this.verifyView.setPresenter(this);
+        this.loginView.setPresenter(this);
+    }
 
     @Override
     public void toLogin(String cell, String psw, String identCode) {
@@ -79,16 +97,45 @@ public class LoginPresenter extends UiContract.LoginPresenter {
             }
 
             @Override
+            public void doRecodeNot0000(String transactionType, String msg, String dis, int resc) {
+                super.doRecodeNot0000(transactionType, msg, dis, resc);
+                switch (resc) {
+                    case 102298:// 该用户已在其他设备上登录
+                        DialogManager.getIT().yzmDialog(mContext, cell, cell, psw);
+                        break;
+                }
+            }
+
+            @Override
             public void doRecodeError(String msg) {
                 super.doRecodeError(msg);
 
             }
-        };
+        }
+
+        ;
         //错误处理 toast
         zhcwCallback.loadingErrToast(false);
-        DoNetWork.getClient().login(loginBusiCode, map, zhcwCallback);
+        DoNetWork.getClient().
+
+                login(loginBusiCode, map, zhcwCallback);
     }
 
+    @Override
+    public void verifyCode(String type, String cell, String psw) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", type);
+        map.put("mobile", cell);
+        if (type.equals("BM")) {
+            map.put("userId", UserMgr.getInstance().getLoginUserId());
+        }
+
+        if (type.equals("LOGIN")) {
+            map.put("password", psw);
+        }
+
+        DoNetWork.getClient().post(verifyBusiCode, map);
+    }
 
     @Override
     public void onStart() {
@@ -98,8 +145,11 @@ public class LoginPresenter extends UiContract.LoginPresenter {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        zhcwCallback.onDestroy();
-        OkGo.getInstance().cancelTag(loginBusiCode);
+        if (null != zhcwCallback) {
+            zhcwCallback.onDestroy();
+            OkGo.getInstance().cancelTag(loginBusiCode);
+        }
+
     }
 
     //测试数据库

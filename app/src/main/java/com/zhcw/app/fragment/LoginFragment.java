@@ -58,7 +58,7 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
     @Override
     protected void initPage() {
         super.initPage();
-        new LoginPresenter(this);
+        new LoginPresenter(getAttachContext(),this);
     }
 
     @Override

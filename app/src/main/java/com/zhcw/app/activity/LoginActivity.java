@@ -2,7 +2,6 @@ package com.zhcw.app.activity;
 
 import android.os.Bundle;
 
-import com.xuexiang.xpage.core.PageOption;
 import com.xuexiang.xui.utils.StatusBarUtils;
 import com.xuexiang.xutil.display.Colors;
 import com.zhcw.app.fragment.LoginFragment;

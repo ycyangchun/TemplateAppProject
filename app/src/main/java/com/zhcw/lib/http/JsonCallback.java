@@ -131,7 +131,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
                             callbackHandler.doRecodeNot0000(transactionType, bodyMsg, "", bodyRescInt);
                     }
                 } catch (Exception e) {
-//                    e.printStackTrace();
+                    e.printStackTrace();
                     throw new UnsupportedOperationException("========== bean 需要继承 BaseMessage =================");
                 }
             } else {

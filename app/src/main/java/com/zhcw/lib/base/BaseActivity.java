@@ -18,7 +18,6 @@
 package com.zhcw.lib.base;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 
@@ -34,8 +33,6 @@ import com.xuexiang.xutil.app.AppUtils;
 import com.xuexiang.xutil.resource.ResourceUtils;
 import com.zhcw.app.base.Constants;
 import com.zhcw.app.base.IConstants;
-import com.zhcw.lib.utils.DeviceID;
-import com.zhcw.lib.utils.ZhcwUtils;
 import com.zhcw.lib.utils.manager.ActivityStackManager;
 import com.zhcw.lib.utils.sdkinit.CrashHandler;
 

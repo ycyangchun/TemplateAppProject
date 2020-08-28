@@ -25,10 +25,10 @@ import com.zhcw.lib.mvp.ZIPresenter;
  */
 public class UiContract {
 
-    public interface LoginView extends IView<LoginPresenter>{
+    public interface LoginView extends IView<LoginPresenter> {
 
         //登录
-        void toLogin(String cell, String psw,String identCode);
+        void toLogin(String cell, String psw, String identCode);
 
         //登录成功
         void successLogin();
@@ -41,6 +41,14 @@ public class UiContract {
 
     }
 
+    public interface VerifyView extends IView<LoginPresenter> {
+
+        //验证码
+        void verifyCode(String type, String cell, String psw);
+
+    }
+
+
     public abstract static class LoginPresenter extends ZIPresenter {
 
         public LoginPresenter(LoginView loginView) {
@@ -48,6 +56,9 @@ public class UiContract {
         }
 
         //登录
-        public abstract void toLogin(String cell, String psw ,String identCode);
+        public abstract void toLogin(String cell, String psw, String identCode);
+
+        //验证码
+        public abstract void verifyCode(String type, String cell, String psw);
     }
 }
