@@ -150,9 +150,9 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
         zhcwUtils.writeAssetsCacheFile("ds/t2.txt");
 //      Logger.d(zhcwUtils.readCacheFile("ds/t3.txt"));
 
-        Logger.d(ToastListUtil.getInstance().getMapValue("DC101062", "默认key 11111111111111111"));
+        Logger.d(ToastListUtil.getIT().getMV("DC101062", "默认key 11111111111111111"));
 //      ToastList.getInstance().removeToast();
-        Logger.d(ToastListUtil.getInstance().getMapValue("DC101059", "默认key 22"));
+        Logger.d(ToastListUtil.getIT().getMV("DC101059", "默认key 22"));
 
 
     }

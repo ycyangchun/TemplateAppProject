@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ab000000"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingLeft="25dp"
+    android:paddingTop="80dp"
+    android:paddingRight="25dp"
+    android:paddingBottom="80dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_dialog_r9"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/spacing_medium"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_max"
+            android:paddingBottom="@dimen/spacing_more"
+            android:showDividers="middle">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/titleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="@dimen/spacing_medium"
+                android:paddingRight="@dimen/spacing_medium"
+                android:text="提醒"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_max"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/contentView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="@dimen/spacing_medium"
+                android:paddingRight="@dimen/spacing_medium"
+                android:text="立即充值,只有充值才能变得更强"
+                android:textColor="@color/text_normal"
+                android:textSize="@dimen/text_more" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layer_rect_topprimary_solidtransparent"
+            android:divider="@drawable/line_primary"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/negativeView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/press_rect_solidtransparent"
+                android:gravity="center"
+                android:padding="@dimen/spacing_smedium"
+                android:text="停止充值"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_more" />
+
+            <TextView
+                android:id="@+id/neutralView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/press_rect_solidtransparent"
+                android:gravity="center"
+                android:padding="@dimen/spacing_smedium"
+                android:text="只能选两边"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_more" />
+
+            <TextView
+                android:id="@+id/positiveView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/press_rect_solidprimary"
+                android:gravity="center"
+                android:padding="@dimen/spacing_smedium"
+                android:text="立即充值"
+                android:textColor="@color/colorWidely"
+                android:textSize="@dimen/text_more" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

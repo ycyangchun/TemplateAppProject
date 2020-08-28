@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorWidely"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:divider="@drawable/spacing_less"
+        android:showDividers="middle"
+        android:paddingTop="@dimen/spacing_more"
+        android:paddingBottom="@dimen/spacing_medium"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/spacing_more"
+            android:paddingRight="@dimen/spacing_more"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/icon_medium"
+                android:layout_height="@dimen/icon_medium"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/titleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="立即充值"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/text_strong"
+                android:textSize="@dimen/text_max"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/contentView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/spacing_more"
+            android:paddingRight="@dimen/spacing_more"
+            android:lineSpacingMultiplier="1.2"
+            android:text="是的只有充钱才能变得更强"
+            android:textColor="@color/text_normal"
+            android:textSize="@dimen/text_medium" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_less"
+        android:paddingLeft="@dimen/spacing_more"
+        android:paddingRight="@dimen/spacing_more"
+        android:divider="@drawable/spacing_medium"
+        android:showDividers="middle"
+        android:layout_gravity="right">
+
+        <TextView
+            android:id="@+id/negativeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/spacing_min"
+            android:text="取消"
+            android:textColor="@drawable/press_text_normal" />
+
+        <TextView
+            android:id="@+id/neutralView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/spacing_min"
+            android:text="中立"
+            android:textColor="@drawable/press_text_normal" />
+
+        <TextView
+            android:id="@+id/positiveView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/spacing_min"
+            android:text="确认"
+            android:textColor="@drawable/press_text_primary" />
+
+    </LinearLayout>
+
+</LinearLayout>

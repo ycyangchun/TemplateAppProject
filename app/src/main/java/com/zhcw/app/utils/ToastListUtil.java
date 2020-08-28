@@ -44,7 +44,7 @@ public class ToastListUtil {
         private static final ToastListUtil INSTANCE = new ToastListUtil();
     }
 
-    public static ToastListUtil getInstance() {
+    public static ToastListUtil getIT() {
         return ToastListUtil.Instance.INSTANCE;
     }
 
@@ -98,9 +98,9 @@ public class ToastListUtil {
      * @param defaultV
      * @return
      */
-    public String getMapValue(String mapK ,String defaultV){
+    public String getMV(String mapK ,String defaultV){
         if(null == toastBean){
-            toastBean = ToastListUtil.getInstance().initToastMap();
+            toastBean = ToastListUtil.getIT().initToastMap();
         }
         return getMapValue(toastBean,mapK,defaultV);
     }

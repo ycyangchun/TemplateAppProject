@@ -52,6 +52,7 @@ import com.xuexiang.xutil.display.Colors;
 import com.zhcw.app.R;
 import com.zhcw.lib.utils.SplashUtils;
 import com.zhcw.lib.utils.XToastUtils;
+import com.zhcw.lib.utils.manager.DialogManager;
 
 import butterknife.BindView;
 
@@ -200,7 +201,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_privacy:
-                SplashUtils.showPrivacyDialog(this, null);
+                DialogManager.getInstance().yzmDialog(this, "11111111", new DialogManager.DialogListener() {
+                    @Override
+                    public void dialogListener(int type,String msg) {
+                        if(0 == type){
+
+                        }else if(1 == type){
+
+                        }
+                    }
+                });
+//                SplashUtils.showPrivacyDialog(this, null);
                 break;
             default:
                 break;
