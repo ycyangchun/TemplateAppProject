@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.xuexiang.xutil.XUtil;
 import com.zhcw.app.R;
+import com.zhcw.app.fragment.LoginPresenter;
 import com.zhcw.app.utils.ToastListUtil;
+import com.zhcw.lib.utils.XToastUtils;
 import com.zhcw.lib.widget.dialog.BaseDialog;
 import com.zhcw.lib.widget.dialog.NormalDialog;
 import com.zhcw.lib.widget.dialog.YzmDialog;
@@ -62,24 +64,32 @@ public class DialogManager {
         }
     }
 
+
     /**
-     *
+     * 登录验证 dialog
      * @param ctx
      * @param content
      */
-    public void yzmDialog(Context ctx, String content, String phoneNumber,DialogManager.DialogListener listener){
+    public void yzmDialog(Context ctx, String content, String phoneNumber,String psw){
         if(null != ctx) {
             dialog = new YzmDialog(ctx)
                     .setTitle(ToastListUtil.getIT().getMV("BC350042",
                             XUtil.getResources().getString(R.string.login_yzm)))
                     .setContent(content)
                     .setPhoneNumber(phoneNumber)
-                    .setListener(listener)
+                    .setPsw(psw)
                     .setNegativeText("取消")
-                    .setPositiveText("确定");
+                    .setPositiveText("确定")
+                    .setListener(new DialogListener() {
+                        @Override
+                        public void dialogListener(int type, String msg) {
 
+                        }
+                    })
+            ;
             dialog.show();
         }
+
     }
 
     public void dismiss(){

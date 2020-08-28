@@ -50,10 +50,6 @@ public class LoginPresenter extends UiContract.LoginPresenter {
         this.loginView.setPresenter(this);
     }
 
-    @Override
-    public void toLogin(String cell, String psw) {
-        toLogin(cell, psw, null);
-    }
 
     @Override
     public void toLogin(String cell, String psw, String identCode) {

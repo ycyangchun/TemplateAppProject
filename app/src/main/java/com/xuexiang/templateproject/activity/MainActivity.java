@@ -201,17 +201,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_privacy:
-                DialogManager.getIT().yzmDialog(this, "11111111","123456" ,
-                        new DialogManager.DialogListener() {
-                    @Override
-                    public void dialogListener(int type,String msg) {
-                        if(0 == type){
-
-                        }else if(1 == type){
-                            XToastUtils.error(msg);
-                        }
-                    }
-                });
+                DialogManager.getIT().yzmDialog(this, "11111111","18810085229" , "123456" );
 //                SplashUtils.showPrivacyDialog(this, null);
                 break;
             default:

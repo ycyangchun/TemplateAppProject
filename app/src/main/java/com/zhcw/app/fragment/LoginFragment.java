@@ -133,7 +133,7 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
 //            popToBack();
 //            ActivityUtils.startActivity(MainActivity.class);
 //        }
-        toLogin(phoneNumber,verifyCode);
+        toLogin(phoneNumber,verifyCode,null);
     }
 
 
@@ -149,8 +149,8 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
 
 
     @Override
-    public void toLogin(String cell, String psw) {
-        loginPresenter.toLogin(cell, psw);
+    public void toLogin(String cell, String psw,String identCode) {
+        loginPresenter.toLogin(cell, psw,identCode);
     }
 
     @Override
