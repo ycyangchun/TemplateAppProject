@@ -7,6 +7,7 @@ import com.xuexiang.xormlite.InternalDataBaseRepository;
 import com.xuexiang.xormlite.annotation.DataBase;
 import com.xuexiang.xormlite.enums.DataBaseType;
 import com.xuexiang.xormlite.logs.DBLog;
+import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.app.AppUtils;
 import com.xuexiang.xutil.common.logger.Logger;
 import com.xuexiang.xutil.data.DateUtils;
@@ -76,6 +77,7 @@ public class App extends BaseApplication implements MyCookieStoreListener {
                 break;
         }
 
+        XUtil.init(this);
     }
 
     /**
