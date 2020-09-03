@@ -17,7 +17,7 @@ public final class TokenUtils {
 
 
     private static String KEY_TOKEN_TIME = "KEY_TOKEN_TIME";
-    private static final long OVERTIME = 1000 * 60 * 25;
+    private static final long OVERTIME = 1000 * 10;//1000 * 60 * 25;
     private TokenUtils() {
         MMKVUtils.init(App.getAppContext());
     }

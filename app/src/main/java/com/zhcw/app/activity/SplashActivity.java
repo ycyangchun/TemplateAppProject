@@ -107,12 +107,11 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
     // 主页
     private void toMain() {
         initFileStorage();
-//        if (TokenUtils.getInstance().getKeyToken()) {
-//            ActivityUtils.startActivity(MainActivity.class);
-//        } else {
-//            ActivityUtils.startActivity(LoginActivity.class);
-//        }
-        ActivityUtils.startActivity(LoginActivity.class);
+        if (TokenUtils.getInstance().getKeyToken()) {
+            ActivityUtils.startActivity(MainActivity.class);
+        } else {
+            ActivityUtils.startActivity(LoginActivity.class);
+        }
         finish();
     }
 
