@@ -75,7 +75,7 @@ public class DoNetWork {
         StringDecipherCallback stringDecipherCallback = new StringDecipherCallback(){
             @Override
             public void onSuccess(Response<String> response) {
-                System.out.println(response.body());
+
             }
         };
         post(url, busiCode, sysType, map, stringDecipherCallback);

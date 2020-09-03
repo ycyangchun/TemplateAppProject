@@ -1,23 +1,5 @@
-/*
- * Copyright (C) 2020 xuexiangjys(xuexiangjys@163.com)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 package com.zhcw.app.fragment;
 
-import android.app.UiAutomation;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -34,7 +16,6 @@ import com.zhcw.app.utils.TokenUtils;
 import com.zhcw.lib.base.bean.User;
 import com.zhcw.lib.db.entity.DbUser;
 import com.zhcw.lib.http.ZhcwCallback;
-import com.zhcw.lib.utils.XToastUtils;
 import com.zhcw.lib.utils.manager.DialogManager;
 import com.zhcw.lib.utils.manager.UserMgr;
 
@@ -49,8 +30,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
     private UiContract.VerifyView verifyView;
 
     private ZhcwCallback zhcwCallback;
-    private final String loginBusiCode = "10020102";
-    private final String verifyBusiCode = "10020107";
+   
 
     private Context mContext;
     public LoginPresenter(Context context ,UiContract.LoginView loginView) {
@@ -101,7 +81,9 @@ public class LoginPresenter extends UiContract.LoginPresenter {
                 super.doRecodeNot0000(transactionType, msg, dis, resc);
                 switch (resc) {
                     case 102298:// 该用户已在其他设备上登录
-                        DialogManager.getIT().yzmDialog(mContext, cell, cell, psw);
+                        StringBuilder sb = new StringBuilder(cell);
+                        sb.replace(3, 7, "****");
+                        DialogManager.getIT().yzmDialog(mContext, sb.toString(), cell, psw);
                         break;
                 }
             }
@@ -118,7 +100,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
         zhcwCallback.loadingErrToast(false);
         DoNetWork.getClient().
 
-                login(loginBusiCode, map, zhcwCallback);
+                login(IConstants.loginBusiCode, map, zhcwCallback);
     }
 
     @Override
@@ -134,7 +116,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
             map.put("password", psw);
         }
 
-        DoNetWork.getClient().post(verifyBusiCode, map);
+        DoNetWork.getClient().post(IConstants.verifyBusiCode, map);
     }
 
     @Override
@@ -147,7 +129,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
         super.onDestroy();
         if (null != zhcwCallback) {
             zhcwCallback.onDestroy();
-            OkGo.getInstance().cancelTag(loginBusiCode);
+            OkGo.getInstance().cancelTag(IConstants.loginBusiCode);
         }
 
     }

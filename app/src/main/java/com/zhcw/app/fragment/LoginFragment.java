@@ -45,6 +45,9 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
     MaterialEditText etPhoneNumber;
     @BindView(R.id.et_verify_code)
     MaterialEditText etVerifyCode;
+    @BindView(R.id.et_password)
+    MaterialEditText etPassword;
+
     @BindView(R.id.btn_get_verify_code)
     RoundButton btnGetVerifyCode;
 
@@ -89,8 +92,11 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
                 break;
             case R.id.btn_login:
                 if (etPhoneNumber.validate()) {
-                    if (etVerifyCode.validate()) {
-                        loginByVerifyCode(etPhoneNumber.getEditValue(), etVerifyCode.getEditValue());
+//                    if (etVerifyCode.validate()) {
+//                        loginByVerifyCode(etPhoneNumber.getEditValue(), etVerifyCode.getEditValue());
+//                    }
+                    if (etPassword.validate()) {
+                        loginByVerifyCode(etPhoneNumber.getEditValue(), etPassword.getEditValue());
                     }
                 }
                 break;

@@ -130,6 +130,9 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
             ActivityUtils.startActivity(MainActivity.class);
             ((LoginActivity) mContext).finish();
         }
+        if(mContext instanceof MainActivity){
+//            ((MainActivity) mContext).closeContextMenu();
+        }
     }
 
     @Override
