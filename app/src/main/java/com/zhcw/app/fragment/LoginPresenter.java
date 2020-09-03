@@ -126,7 +126,6 @@ public class LoginPresenter extends UiContract.LoginPresenter {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         if (null != zhcwCallback) {
             zhcwCallback.onDestroy();
             OkGo.getInstance().cancelTag(IConstants.loginBusiCode);

@@ -17,8 +17,8 @@
 
 package com.zhcw.app.base;
 
+import com.zhcw.lib.mvp.IPresenter;
 import com.zhcw.lib.mvp.IView;
-import com.zhcw.lib.mvp.ZIPresenter;
 
 /**
  * ui 绑定契约
@@ -49,10 +49,9 @@ public class UiContract {
     }
 
 
-    public abstract static class LoginPresenter extends ZIPresenter {
+    public abstract static class LoginPresenter implements IPresenter {
 
         public LoginPresenter(LoginView loginView) {
-            super(loginView);
         }
 
         //登录

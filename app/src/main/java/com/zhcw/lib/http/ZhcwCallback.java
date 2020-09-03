@@ -190,7 +190,9 @@ public class ZhcwCallback implements CallbackHandler,LifecycleObserver {
             iView.killMyselfView();
             iView = null;
         }
-        this.onDestroy();
+        if(model != null){
+            model = null;
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

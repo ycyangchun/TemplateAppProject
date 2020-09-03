@@ -7,6 +7,9 @@ import com.xuexiang.xutil.display.Colors;
 import com.zhcw.app.fragment.LoginFragment;
 import com.zhcw.lib.base.BaseActivity;
 
+/**
+ * 登录
+ */
 public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -31,6 +31,7 @@ public interface IConstants {
     int ERR_SHOW_DIALOG = 1;// 显示 dialog
     int ERR_NO_SHOW = 2;// 不显示（可以子类单独处理）
 
+    /////////////////////业务code//////////////////////////////////////////
     //登录
     String loginBusiCode = "10020102";
     //登录验证码

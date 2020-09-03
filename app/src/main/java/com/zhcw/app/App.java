@@ -11,6 +11,7 @@ import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.app.AppUtils;
 import com.xuexiang.xutil.common.logger.Logger;
 import com.xuexiang.xutil.data.DateUtils;
+import com.xuexiang.xutil.resource.ResourceUtils;
 import com.zhcw.app.base.Constants;
 import com.zhcw.app.base.IConstants;
 import com.zhcw.lib.base.BaseApplication;
@@ -36,7 +37,9 @@ public class App extends BaseApplication implements MyCookieStoreListener {
     public void onCreate() {
         buildApp();
         super.onCreate();
+
         initDb();
+        initChannelSrc();
         FileUtilSupply.initFileUtils();
     }
 
@@ -56,6 +59,8 @@ public class App extends BaseApplication implements MyCookieStoreListener {
     }
 
     public void buildApp(){
+
+        XUtil.init(this);
 
         Constants.packageName = "zhcwLib";//(设置应用存储包名)  ： zhcw 中彩网
         Constants.versionName = String.valueOf(AppUtils.getAppVersionCode());
@@ -77,7 +82,24 @@ public class App extends BaseApplication implements MyCookieStoreListener {
                 break;
         }
 
-        XUtil.init(this);
+
+    }
+
+    //渠道id
+    void initChannelSrc() {
+        String channel = AppUtils.getStringValueInMetaData("UMENG_CHANNEL");
+        if(!TextUtils.isEmpty(channel)) {
+            if (channel.contains("channelid")) {
+                Constants.channelId = channel.substring("channelid".length(), channel.length());
+            } else {
+                Constants.channelId = channel.substring(0, 10);
+            }
+        }
+        if(TextUtils.isEmpty(Constants.channelId)) {
+            Constants.channelId = ResourceUtils.readStringFromAssert("channel.txt");
+            Constants.channelId = Constants.channelId.substring(0, 10);
+        }
+        Constants.channelId += "|" + IConstants.src_platform + IConstants.src_project + Constants.versionName;
     }
 
     /**

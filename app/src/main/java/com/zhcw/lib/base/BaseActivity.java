@@ -72,7 +72,6 @@ public class BaseActivity extends XPageActivity {
         Tag = this.getLocalClassName();
         baseAct = this;
         ActivityStackManager.getScreenManager().pushActivity(baseAct);//
-        initChannelSrc();
         // 侧滑回调
         if (isSupportSlideBack()) {
             SlideBack.with(this)
@@ -109,22 +108,7 @@ public class BaseActivity extends XPageActivity {
 
     }
 
-    //渠道id
-    public void initChannelSrc() {
-        String channel = AppUtils.getStringValueInMetaData("UMENG_CHANNEL");
-        if(!TextUtils.isEmpty(channel)) {
-            if (channel.contains("channelid")) {
-                Constants.channelId = channel.substring("channelid".length(), channel.length());
-            } else {
-                Constants.channelId = channel.substring(0, 10);
-            }
-        }
-        if(TextUtils.isEmpty(Constants.channelId)) {
-            Constants.channelId = ResourceUtils.readStringFromAssert("channel.txt");
-            Constants.channelId = Constants.channelId.substring(0, 10);
-        }
-        Constants.channelId += "|" + IConstants.src_platform + IConstants.src_project + Constants.versionName;
-    }
+
 
 
     /**

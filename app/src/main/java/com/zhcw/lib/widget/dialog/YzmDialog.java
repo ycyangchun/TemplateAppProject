@@ -113,6 +113,9 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
         if (mCountDownHelper != null) {
             mCountDownHelper.recycle();
         }
+        if(null != loginPresenter){
+            loginPresenter.onDestroy();
+        }
     }
 
     ///////////////////
@@ -128,7 +131,9 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
         dismiss();
         if(mContext instanceof LoginActivity){
             ActivityUtils.startActivity(MainActivity.class);
-            ((LoginActivity) mContext).finish();
+//            ((LoginActivity) mContext).finish();
+            ((LoginActivity) mContext).popPage();
+
         }
         if(mContext instanceof MainActivity){
 //            ((MainActivity) mContext).closeContextMenu();

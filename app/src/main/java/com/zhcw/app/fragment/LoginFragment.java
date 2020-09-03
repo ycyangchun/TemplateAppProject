@@ -151,6 +151,15 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
         super.onDestroyView();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //防止内存泄漏
+        if(null != loginPresenter){
+            loginPresenter.onDestroy();
+        }
+    }
+
     /////////////
 
 

@@ -1,5 +1,6 @@
 package com.zhcw.lib.utils.sdkinit;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -12,12 +13,14 @@ import android.widget.Toast;
 
 
 import com.xuexiang.xutil.XUtil;
+import com.zhcw.app.App;
 import com.zhcw.app.base.Constants;
 import com.zhcw.lib.utils.FileUtilSupply;
 import com.zhcw.lib.utils.manager.ActivityStackManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InterruptedIOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -95,13 +98,17 @@ public class CrashHandler implements UncaughtExceptionHandler {
      * @param context
      */
     public void init(Context context) {
-        mContext = context;
-        // 获取系统默认的UncaughtException处理器
-        mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
-        // 设置该CrashHandler为程序的默认处理器
-        Thread.setDefaultUncaughtExceptionHandler(this);
+        if(context instanceof Application) {
+            mContext = context;
+            // 获取系统默认的UncaughtException处理器
+            mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
+            // 设置该CrashHandler为程序的默认处理器
+            Thread.setDefaultUncaughtExceptionHandler(this);
 //        crashPath = getSavePath();
-        crashPath = FileUtilSupply.getCacheFilePath("error");
+            crashPath = FileUtilSupply.getCacheFilePath("error");
+        }else {
+            throw new IllegalStateException("set Application.");
+        }
     }
 
     /**

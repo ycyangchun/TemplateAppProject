@@ -48,8 +48,6 @@ import me.jessyan.autosize.internal.CancelAdapt;
 /**
  * 启动页【无需适配屏幕大小】
  *
- * @author xuexiang
- * @since 2019-06-30 17:32
  */
 public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
 
@@ -118,7 +116,7 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
     //初始存储目录
     private void initFileStorage() {
         FileUtilSupply.initCache();
-        CrashHandler.getInstance().init(this);
+        CrashHandler.getInstance().init(App.getAppContext());
         AppExecutors.get().diskIO().execute(new Runnable() {
             @Override
             public void run() {
