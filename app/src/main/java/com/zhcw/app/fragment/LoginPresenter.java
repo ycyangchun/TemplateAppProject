@@ -98,9 +98,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
         ;
         //错误处理 toast
         zhcwCallback.loadingErrToast(false);
-        DoNetWork.getClient().
-
-                login(IConstants.loginBusiCode, map, zhcwCallback);
+        DoNetWork.getClient().login(IConstants.loginBusiCode, map, zhcwCallback);
     }
 
     @Override
@@ -126,11 +124,7 @@ public class LoginPresenter extends UiContract.LoginPresenter {
 
     @Override
     public void onDestroy() {
-        if (null != zhcwCallback) {
-            zhcwCallback.onDestroy();
-            OkGo.getInstance().cancelTag(IConstants.loginBusiCode);
-        }
-
+        OkGo.getInstance().cancelTag(IConstants.loginBusiCode);
     }
 
     //测试数据库

@@ -1,12 +1,10 @@
 package com.zhcw.lib.http;
 
 import com.xuexiang.xutil.common.logger.Logger;
-import com.zhcw.app.App;
 import com.zhcw.app.base.Constants;
 import com.zhcw.app.base.IConstants;
 import com.zhcw.lib.mvp.IView;
 import com.zhcw.lib.utils.XToastUtils;
-import com.zhcw.lib.utils.manager.DialogManager;
 import com.zhcw.lib.utils.manager.UserMgr;
 
 import androidx.lifecycle.Lifecycle;
@@ -21,7 +19,7 @@ public class ZhcwCallback implements CallbackHandler,LifecycleObserver {
 
     private String TAG = this.getClass().getName();
     private IView iView;
-    private ZhcwCallback model;
+    private ZhcwCallback callback;
     private int errShow = IConstants.ERR_NO_SHOW;//网络请求错误显示处理
     private boolean loadingShow = false;//加载是否有loading
     private boolean loadingCancel = true;//loading 是否可取消
@@ -30,18 +28,18 @@ public class ZhcwCallback implements CallbackHandler,LifecycleObserver {
 
     public ZhcwCallback(IView iView) {
         this.iView = iView;
-        model = this;
+        callback = this;
         //将 LifecycleObserver 注册给 LifecycleOwner 后 @OnLifecycleEvent 才可以正常使用
         if (iView != null && iView instanceof LifecycleOwner) {
             ((LifecycleOwner) iView).getLifecycle().addObserver(this);
-            if (model!= null && model instanceof LifecycleObserver){
-                ((LifecycleOwner) iView).getLifecycle().addObserver((LifecycleObserver) model);
+            if (callback != null && callback instanceof LifecycleObserver){
+                ((LifecycleOwner) iView).getLifecycle().addObserver((LifecycleObserver) callback);
             }
         }
     }
 
     public ZhcwCallback() {
-        model = this;
+        callback = this;
     }
 
     /**
@@ -190,8 +188,8 @@ public class ZhcwCallback implements CallbackHandler,LifecycleObserver {
             iView.killMyselfView();
             iView = null;
         }
-        if(model != null){
-            model = null;
+        if(callback != null){
+            callback = null;
         }
     }
 
