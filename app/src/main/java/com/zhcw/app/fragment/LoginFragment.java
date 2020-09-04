@@ -154,9 +154,8 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //防止内存泄漏
         if(null != loginPresenter){
-            loginPresenter.onDestroy();
+            loginPresenter = null;
         }
     }
 
@@ -172,6 +171,7 @@ public class LoginFragment extends BaseFragment implements UiContract.LoginView 
     public void successLogin() {
         popToBack();
         ActivityUtils.startActivity(MainActivity.class);
+//        startActivity(new Intent(getAttachContext(), MainActivity.class));
     }
 
     @Override

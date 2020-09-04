@@ -116,6 +116,7 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
         if(null != loginPresenter){
             loginPresenter.onDestroy();
         }
+        mContext = null;
     }
 
     ///////////////////
@@ -128,7 +129,7 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
 
     @Override
     public void successLogin() {
-        dismiss();
+
         if(mContext instanceof LoginActivity){
             ActivityUtils.startActivity(MainActivity.class);
 //            ((LoginActivity) mContext).finish();
@@ -138,6 +139,7 @@ public class YzmDialog extends BaseNormalDialog<YzmDialog> implements UiContract
         if(mContext instanceof MainActivity){
 //            ((MainActivity) mContext).closeContextMenu();
         }
+        dismiss();
     }
 
     @Override

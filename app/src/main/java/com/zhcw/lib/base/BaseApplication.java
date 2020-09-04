@@ -13,6 +13,8 @@ import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
+import com.xuexiang.xutil.XUtil;
+import com.xuexiang.xutil.app.ActivityLifecycleHelper;
 import com.xuexiang.xutil.common.logger.Logger;
 import com.zhcw.app.App;
 import com.zhcw.app.BuildConfig;
@@ -32,6 +34,7 @@ import java.util.logging.Level;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
 import okhttp3.OkHttpClient;
 
@@ -51,6 +54,7 @@ public class BaseApplication extends Application {
 
     @Override
     protected void attachBaseContext(Context base) {
+        XUtil.disableAutoInit();
         super.attachBaseContext(base);
         //解决4.x运行崩溃的问题
         MultiDex.install(this);
@@ -62,7 +66,7 @@ public class BaseApplication extends Application {
         GLOBAL_APP_CONTEXT = this;
         initLibs();
         //前后台
-        registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
+        XUtil.registerLifecycleCallbacks(this,activityLifecycleHelper);
     }
 
 
@@ -98,14 +102,10 @@ public class BaseApplication extends Application {
     /**
      * Activity 生命周期监听，用于监控app前后台状态切换
      */
-    ActivityLifecycleCallbacks activityLifecycleCallbacks = new ActivityLifecycleCallbacks() {
+    ActivityLifecycleHelper activityLifecycleHelper = new ActivityLifecycleHelper(){
         @Override
-        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
-        }
-
-        @Override
-        public void onActivityStarted(Activity activity) {
+        public void onActivityStarted(@NonNull Activity activity) {
+            super.onActivityStarted(activity);
             if (activityNumber == 0) {
                 Logger.i("app回到前台");
                 isForeground = true;
@@ -115,17 +115,8 @@ public class BaseApplication extends Application {
         }
 
         @Override
-        public void onActivityResumed(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivityPaused(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivityStopped(Activity activity) {
+        public void onActivityStopped(@NonNull Activity activity) {
+            super.onActivityStopped(activity);
             activityNumber--;
             Logger.i("activityNumber = " + activityNumber);
             if (activityNumber == 0) {
@@ -133,14 +124,6 @@ public class BaseApplication extends Application {
                 Logger.i("app回到后台");
                 isForeground = false;
             }
-        }
-
-        @Override
-        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-        }
-
-        @Override
-        public void onActivityDestroyed(Activity activity) {
         }
     };
 

@@ -197,6 +197,7 @@ public class ZhcwCallback implements CallbackHandler,LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     void onDestroy(LifecycleOwner owner) {
+        onDestroy();
         owner.getLifecycle().removeObserver(this);
     }
     ///////////////////////////////////////////////////

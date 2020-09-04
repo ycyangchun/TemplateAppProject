@@ -59,9 +59,7 @@ public class App extends BaseApplication implements MyCookieStoreListener {
     }
 
     public void buildApp(){
-
-        XUtil.init(this);
-
+        XUtil.init(getApplicationContext());
         Constants.packageName = "zhcwLib";//(设置应用存储包名)  ： zhcw 中彩网
         Constants.versionName = String.valueOf(AppUtils.getAppVersionCode());
         Constants.DEBUG_VERSION = DateUtils.date2String(new Date()
