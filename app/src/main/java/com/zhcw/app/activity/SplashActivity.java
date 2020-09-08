@@ -158,8 +158,6 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(null != XAOP.getOnPermissionDeniedListener()) {
-            XAOP.setOnPermissionDeniedListener(null);
-        }
+
     }
 }
