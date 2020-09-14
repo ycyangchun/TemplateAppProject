@@ -32,10 +32,8 @@ public class ZhcwCallback implements CallbackHandler,LifecycleObserver {
         //将 LifecycleObserver 注册给 LifecycleOwner 后 @OnLifecycleEvent 才可以正常使用
         if (iView != null && iView instanceof LifecycleOwner) {
             ((LifecycleOwner) iView).getLifecycle().addObserver(this);
-            if (callback != null && callback instanceof LifecycleObserver){
-                ((LifecycleOwner) iView).getLifecycle().addObserver((LifecycleObserver) callback);
-            }
         }
+
     }
 
     public ZhcwCallback() {
