@@ -55,8 +55,7 @@ public class ToastListUtil {
     /**
      * 读取 toastList
      * zhcwUtils 保存，便于查看用
-     * DiskCache("toastMap") 应用中使用，
-     * 调用方法时，如果缓存中没有则会创建并保存到 DiskCache
+     * DiskCache("toastMap") 应用中使用，调用方法时，如果缓存中没有则会创建并保存到 DiskCache
      * @return
      */
     @DiskCache(KEY_TOAST)
@@ -113,13 +112,13 @@ public class ToastListUtil {
      * @return
      */
     public String getMapValue(HashMap<String,String> map,String mapK ,String defaultV){
-        String v = null;
+        String v ;
         if(null != map){
             v = map.get(mapK);
-        }
-        if(null == v){
+        }else{
             v = defaultV;
         }
+
         return v;
     }
 }
