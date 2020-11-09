@@ -23,6 +23,8 @@ import com.umeng.analytics.MobclickAgent;
 import com.xuexiang.templateproject.activity.LoginActivity;
 import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.xutil.common.StringUtils;
+import com.zhcw.lib.utils.MMKVUtils;
+import com.zhcw.lib.utils.XToastUtils;
 
 /**
  * Token管理工具

@@ -75,9 +75,6 @@ public abstract class BaseFragment extends XPageFragment {
 
     @Override
     public void onDestroyView() {
-        if (mIProgressLoader != null) {
-            mIProgressLoader.dismissLoading();
-        }
         super.onDestroyView();
     }
 

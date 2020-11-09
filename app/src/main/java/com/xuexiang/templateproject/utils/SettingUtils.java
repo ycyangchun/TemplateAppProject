@@ -1,6 +1,8 @@
 package com.xuexiang.templateproject.utils;
 
 
+import com.zhcw.lib.utils.MMKVUtils;
+
 /**
  * SharedPreferences管理工具基类
  *

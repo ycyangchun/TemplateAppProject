@@ -20,24 +20,25 @@ package com.xuexiang.templateproject.fragment;
 import android.graphics.Color;
 import android.view.View;
 
-import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.utils.RandomUtils;
 import com.xuexiang.templateproject.utils.SettingUtils;
 import com.xuexiang.templateproject.utils.TokenUtils;
-import com.xuexiang.templateproject.utils.Utils;
-import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xui.utils.CountDownButtonHelper;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.ThemeUtils;
+import com.xuexiang.xui.utils.Utils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.button.roundbutton.RoundButton;
 import com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText;
 import com.xuexiang.xutil.app.ActivityUtils;
+import com.zhcw.app.R;
+import com.zhcw.lib.utils.SplashUtils;
+import com.zhcw.lib.utils.XToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -89,7 +90,7 @@ public class LoginFragment extends BaseFragment {
 
         //隐私政策弹窗
         if (!SettingUtils.isAgreePrivacy()) {
-            Utils.showPrivacyDialog(getContext(), (dialog, which) -> {
+            SplashUtils.showPrivacyDialog(getContext(), (dialog, which) -> {
                 dialog.dismiss();
                 SettingUtils.setIsAgreePrivacy(true);
             });

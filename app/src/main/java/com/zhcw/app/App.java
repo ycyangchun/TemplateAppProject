@@ -9,7 +9,6 @@ import com.xuexiang.xormlite.enums.DataBaseType;
 import com.xuexiang.xormlite.logs.DBLog;
 import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.app.AppUtils;
-import com.xuexiang.xutil.common.logger.Logger;
 import com.xuexiang.xutil.data.DateUtils;
 import com.xuexiang.xutil.resource.ResourceUtils;
 import com.zhcw.app.base.Constants;

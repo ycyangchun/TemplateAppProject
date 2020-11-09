@@ -20,11 +20,11 @@ package com.xuexiang.templateproject.activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.fragment.LoginFragment;
 import com.xuexiang.xui.utils.KeyboardUtils;
 import com.xuexiang.xui.utils.StatusBarUtils;
 import com.xuexiang.xutil.display.Colors;
+import com.zhcw.lib.base.BaseActivity;
 
 /**
  * 登录页面

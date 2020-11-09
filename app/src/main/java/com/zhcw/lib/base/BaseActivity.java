@@ -108,16 +108,6 @@ public class BaseActivity extends XPageActivity {
 
 
 
-
-    /**
-     * 初始化状态栏的样式
-     */
-    protected void initStatusBarStyle() {
-
-    }
-
-
-
     /**
      * 打开fragment
      *
