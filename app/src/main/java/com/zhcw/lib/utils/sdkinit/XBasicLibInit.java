@@ -19,6 +19,11 @@ package com.zhcw.lib.utils.sdkinit;
 
 import android.app.Application;
 
+
+import com.xuexiang.templateproject.MyApp;
+import com.xuexiang.templateproject.core.BaseActivity;
+import com.xuexiang.templateproject.utils.TokenUtils;
+import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xpage.AppPageConfig;
 import com.xuexiang.xpage.PageConfig;
@@ -70,6 +75,7 @@ public final class XBasicLibInit {
     private static void initXUtil(Application application) {
         XUtil.debug(App.isDebug());
         MMKVUtils.init(application);
+        TokenUtils.init(application);
     }
 
     /**

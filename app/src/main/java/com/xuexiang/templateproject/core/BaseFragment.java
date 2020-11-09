@@ -63,7 +63,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         //屏幕旋转时刷新一下title
         super.onConfigurationChanged(newConfig);
         ViewGroup root = (ViewGroup) getRootView();
@@ -71,6 +71,14 @@ public abstract class BaseFragment extends XPageFragment {
             root.removeViewAt(0);
             initTitle();
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (mIProgressLoader != null) {
+            mIProgressLoader.dismissLoading();
+        }
+        super.onDestroyView();
     }
 
     @Override
